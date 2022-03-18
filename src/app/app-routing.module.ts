@@ -6,13 +6,20 @@ import { ForumComponent } from './forum/forum.component';
 const routes: Routes = [
   {
     path: '',
-    component: ForumComponent
+    component: ForumComponent,
+    pathMatch: 'full'
   },
   {
     path: 'profile',
+    component: ForumComponent
   },
   {
-    path: 'forum'
+    path: 'forum',
+    component: ForumComponent
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];
 

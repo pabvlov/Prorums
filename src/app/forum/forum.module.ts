@@ -4,6 +4,7 @@ import { CategoryComponent } from './category/category.component';
 import { ForumComponent } from './forum.component';
 import { SharedModule } from '../shared/shared.module';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -11,11 +12,11 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
   declarations: [
     CategoryComponent,
     ForumComponent,
-    
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    RouterModule,
   ]
 })
 export class ForumModule { }

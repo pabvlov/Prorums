@@ -1,0 +1,13 @@
+a.nav-link {
+    margin: 0 30px !important;
+}
+
+a {
+    align-items: center;
+    text-align: center;
+    margin: auto;
+}
+
+ul {
+    padding: 10px 0;
+}
