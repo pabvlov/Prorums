@@ -3,5 +3,5 @@ export interface Forum {
     name: string,
     description: string,
     picture: string,
-    position: string
+    position: number
 }

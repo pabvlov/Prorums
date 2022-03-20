@@ -1,1 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.card {
+    margin: 30px 0;
+    border: 0;
+    -webkit-box-shadow: 10px 10px 16px -6px rgba(0,0,0,0.48);
+    -moz-box-shadow: 10px 10px 16px -6px rgba(0,0,0,0.48);
+    box-shadow: 10px 10px 16px -6px rgba(0,0,0,0.48);
+}
+
+.border-gradient {
+    border-bottom: 5px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+}
+
+.bg-animated {
+    background: linear-gradient(68deg, #ee00ff, #004dff, #860089);
+    background-size: 600% 600%;
+    color: white;
+    -webkit-animation: AnimationName 7s ease infinite;
+    -moz-animation: AnimationName 7s ease infinite;
+    -o-animation: AnimationName 7s ease infinite;
+    animation: AnimationName 7s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 69%}
+    50%{background-position:100% 32%}
+    100%{background-position:0% 69%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 69%}
+    50%{background-position:100% 32%}
+    100%{background-position:0% 69%}
+}
+@-o-keyframes AnimationName {
+    0%{background-position:0% 69%}
+    50%{background-position:100% 32%}
+    100%{background-position:0% 69%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 69%}
+    50%{background-position:100% 32%}
+    100%{background-position:0% 69%}
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}

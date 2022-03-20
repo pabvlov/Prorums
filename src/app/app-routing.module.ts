@@ -1,21 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { ForumComponent } from './forum/forum.component';
+import { IndexComponent } from './index/index.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ForumComponent,
+    component: IndexComponent,
     pathMatch: 'full'
   },
   {
     path: 'profile',
-    component: ForumComponent
+    component: IndexComponent
   },
   {
     path: 'forum',
-    component: ForumComponent
+    component: IndexComponent
   },
   {
     path: '**',
