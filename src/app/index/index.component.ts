@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../interfaces/user.interface';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-index',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
-  constructor() { }
+  users: User[] = this.userService.getList();
+  errorMessage="";
+  
+  constructor(private userService: UserService) {
+    
+  }
 
   ngOnInit(): void {
   }

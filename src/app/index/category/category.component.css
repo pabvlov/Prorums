@@ -1,12 +1,3 @@
-a {
-    text-decoration: none;
-    color: black;
-}
-
-p {
-    color: grey;
-}
-
-.card-header {
-    font-weight: 700 !important;
+.card-body {
+    padding: 5px;
 }

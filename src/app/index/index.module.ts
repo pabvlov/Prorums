@@ -6,6 +6,8 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { ChangelogComponent } from './changelog/changelog.component';
 import { AdvertisementsComponent } from './advertisements/advertisements.component';
+import { ForumComponent } from './forum/forum.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -14,12 +16,14 @@ import { AdvertisementsComponent } from './advertisements/advertisements.compone
     CategoryComponent,
     IndexComponent,
     ChangelogComponent,
-    AdvertisementsComponent
+    AdvertisementsComponent,
+    ForumComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule,
+    HttpClientModule
   ],
   exports: [
   ]

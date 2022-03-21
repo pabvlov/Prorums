@@ -6,6 +6,10 @@
         <div class="col-lg-6 col-md-6 col-sm-12">
             <app-changelog></app-changelog>
         </div>
+
+        <ul *ngFor="let user of users">
+            <li>{{ user.name }}</li>
+        </ul>
     </div>
 
     <app-category></app-category>

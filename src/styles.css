@@ -7,6 +7,7 @@
     -webkit-box-shadow: 10px 10px 16px -6px rgba(0,0,0,0.48);
     -moz-box-shadow: 10px 10px 16px -6px rgba(0,0,0,0.48);
     box-shadow: 10px 10px 16px -6px rgba(0,0,0,0.48);
+
 }
 
 .border-gradient {
@@ -15,32 +16,38 @@
     border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
 }
 
+.border-gradient-mini {
+    border-bottom: 1px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+}
+
 .bg-animated {
     background: linear-gradient(68deg, #ee00ff, #004dff, #860089);
     background-size: 600% 600%;
     color: white;
-    -webkit-animation: AnimationName 7s ease infinite;
-    -moz-animation: AnimationName 7s ease infinite;
-    -o-animation: AnimationName 7s ease infinite;
-    animation: AnimationName 7s ease infinite;
+    -webkit-animation: gradient 7s ease infinite;
+    -moz-animation: gradient 7s ease infinite;
+    -o-animation: gradient 7s ease infinite;
+    animation: gradient 7s ease infinite;
 }
 
-@-webkit-keyframes AnimationName {
+@-webkit-keyframes gradient {
     0%{background-position:0% 69%}
     50%{background-position:100% 32%}
     100%{background-position:0% 69%}
 }
-@-moz-keyframes AnimationName {
+@-moz-keyframes gradient {
     0%{background-position:0% 69%}
     50%{background-position:100% 32%}
     100%{background-position:0% 69%}
 }
-@-o-keyframes AnimationName {
+@-o-keyframes gradient {
     0%{background-position:0% 69%}
     50%{background-position:100% 32%}
     100%{background-position:0% 69%}
 }
-@keyframes AnimationName {
+@keyframes gradient {
     0%{background-position:0% 69%}
     50%{background-position:100% 32%}
     100%{background-position:0% 69%}
