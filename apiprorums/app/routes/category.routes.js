@@ -14,7 +14,7 @@ router.get('/categories', async function(req, res, next) {
 
 router.get('/categories/:id/forums', async function(req, res, next) {
   try {
-    res.json(await category.getCategoryForums(req.query.page));
+    res.json(await category.getCategoryForums(req.query.page, parseInt(req.params.id)));
   } catch (err) {
     console.error(`Error while getting category's forums `, err.message);
     next(err);

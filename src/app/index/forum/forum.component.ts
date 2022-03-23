@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { Forum } from 'src/app/interfaces/forum.interface';
+import { ForumService } from 'src/app/services/forum.service';
 
 
 @Component({
@@ -7,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./forum.component.css']
 })
 export class ForumComponent implements OnInit {
+  @Input() id:number = 3
 
-  constructor() { }
+  @Output() forum: Forum = this.forumService.getForum(this.id);
+  
+  constructor(private forumService: ForumService) { }
 
   ngOnInit(): void {
+    console.log(this.forum);
+    
   }
 
 }
