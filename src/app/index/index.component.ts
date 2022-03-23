@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from '../interfaces/category.interface';
 import { User } from '../interfaces/user.interface';
+import { CategoryService } from '../services/category.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -10,9 +12,9 @@ import { UserService } from '../services/user.service';
 export class IndexComponent implements OnInit {
 
   users: User[] = this.userService.getList();
-  errorMessage="";
+  categories: Category[] = this.categoryService.getList();
   
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private categoryService: CategoryService) {
     
   }
 

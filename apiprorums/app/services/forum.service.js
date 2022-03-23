@@ -4,18 +4,17 @@ const config = require('../../config/db.config'); */
 
 async function getMultiple(){
   //const offset = helper.getOffset(page, config.listPerPage);
-  const category = await db.query(`SELECT * FROM category`);
-
-  return category;
-}
-
-async function getCategoryForums(){
   const category = await db.query(`SELECT * FROM forum`);
 
   return category;
 }
 
+async function getById(id){
+    const category = await db.query(`SELECT * FROM forum WHERE id = ${id}`);
+    return category;
+}
+
 module.exports = {
   getMultiple,
-  getCategoryForums
+  getById,
 }

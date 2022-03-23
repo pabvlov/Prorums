@@ -1,17 +1,10 @@
-<div class="card border-gradient">
-    <h5 class="card-header bg-animated">Categoria 1</h5>
-    <div class="card-body">
-        <app-forum></app-forum>
-        <app-forum></app-forum>
-    </div>
-</div>
-
-<div class="card border-gradient">
-    <h5 class="card-header bg-animated">Categoria 2</h5>
-    <div class="card-body">
-        <app-forum></app-forum>
-        <app-forum></app-forum>
-        <app-forum></app-forum>
-        <app-forum></app-forum>
+<div class="card border-gradient" *ngFor="let category of categories">
+    <div >
+        <h5 class="card-header bg-animated">{{ category.name }}</h5>
+        <div class="card-body">
+            <div *ngFor="let forum of category.forums">
+                <app-forum [id]=forum.id></app-forum>
+            </div>
+        </div>
     </div>
 </div>
