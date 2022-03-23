@@ -11,7 +11,7 @@
  Target Server Version : 100424
  File Encoding         : 65001
 
- Date: 23/03/2022 16:21:11
+ Date: 23/03/2022 16:24:33
 */
 
 SET NAMES utf8mb4;
@@ -59,10 +59,10 @@ CREATE TABLE `changelog`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `changes` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   `date` datetime(0) NULL DEFAULT NULL,
-  `id_user` int NULL DEFAULT NULL,
+  `id_user_fk` int NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `id_user_changelog`(`id_user`) USING BTREE,
-  CONSTRAINT `id_user_changelog` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  INDEX `id_user_changelog`(`id_user_fk`) USING BTREE,
+  CONSTRAINT `id_user_changelog` FOREIGN KEY (`id_user_fk`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -84,10 +84,6 @@ CREATE TABLE `config`  (
   CONSTRAINT `id_advertisement_config` FOREIGN KEY (`id_advertisement_fk`) REFERENCES `advertisement` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `id_changelog_config` FOREIGN KEY (`id_changelog_fk`) REFERENCES `changelog` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of config
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for country
