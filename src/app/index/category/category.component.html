@@ -2,6 +2,10 @@
     <div >
         <h5 class="card-header bg-animated">{{ category.name }}</h5>
         <div class="card-body">
+            <app-forum></app-forum>
+            <app-forum></app-forum>
+            <app-forum></app-forum>
+            <app-forum></app-forum>
             <div *ngFor="let forum of category.forums">
                 <app-forum [id]=forum.id></app-forum>
             </div>

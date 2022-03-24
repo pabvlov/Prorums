@@ -9,14 +9,14 @@ import { ForumService } from 'src/app/services/forum.service';
   styleUrls: ['./forum.component.css']
 })
 export class ForumComponent implements OnInit {
-  @Input() id:number = 3
 
-  @Output() forum: Forum = this.forumService.getForum(this.id);
+  @Input() id:number = 3
+  //@Output() forum: Forum = this.forumService.getForums(this.id);
   
   constructor(private forumService: ForumService) { }
 
   ngOnInit(): void {
-    console.log(this.forum);
+    //console.log();
     
   }
 

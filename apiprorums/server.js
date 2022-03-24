@@ -19,15 +19,9 @@ app.get("/", (req, res) => {
 });
 app.get("/users", usersRouter);
 app.get("/categories", categoriesRouter);
-<<<<<<< HEAD
-app.get("/forums", categoriesRouter);
-
-
-=======
 app.get("/categories/:id/forums", categoriesRouter);
 app.get("/forums", forumsRouter);
 app.get("/forums/:id", forumsRouter);
->>>>>>> b42b634d1a5bdade7aa849edc58dca5291cd7f81
 /* Error handler middleware */
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

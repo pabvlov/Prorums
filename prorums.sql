@@ -34,6 +34,85 @@ CREATE TABLE `advertisement`  (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for country
+-- ----------------------------
+CREATE TABLE `country`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `country` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of country
+-- ----------------------------
+INSERT INTO `country` VALUES (1, 'Chile');
+
+-- ----------------------------
+-- Table structure for role
+-- ----------------------------
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE `role`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `role` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `card` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `permissions` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of role
+-- ----------------------------
+INSERT INTO `role` VALUES (1, 'administrador', 'uwu', 'administrador');
+
+-- ----------------------------
+-- Table structure for language
+-- ----------------------------
+DROP TABLE IF EXISTS `language`;
+CREATE TABLE `language`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `language` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of language
+-- ----------------------------
+INSERT INTO `language` VALUES (1, 'Español');
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `mail` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `sign` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `location` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `picture` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `registration_date` datetime(0) NULL DEFAULT NULL,
+  `last_visit` datetime(0) NULL DEFAULT NULL,
+  `id_language_fk` int NULL DEFAULT NULL,
+  `id_role_fk` int NULL DEFAULT NULL,
+  `id_country_fk` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `id_country_user_fk`(`id_country_fk`) USING BTREE,
+  INDEX `id_language_user`(`id_language_fk`) USING BTREE,
+  INDEX `id_role_user`(`id_role_fk`) USING BTREE,
+  CONSTRAINT `id_country_user_fk` FOREIGN KEY (`id_country_fk`) REFERENCES `country` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `id_language_user_fk` FOREIGN KEY (`id_language_fk`) REFERENCES `language` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `id_role_user_fk` FOREIGN KEY (`id_role_fk`) REFERENCES `role` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES (10, 'Pablo Prieto', 'pabvlov', 'pablojavierprietocepeda@gmail.com', '123', 'uwu', 'killpue', '123', '2022-03-20 19:13:06', '2022-03-20 19:13:06', 1, 1, 1);
+INSERT INTO `user` VALUES (11, 'Daniel Avila', 'amurpo', 'danielavila@gmail.com', '123', 'uwu', 'killpue', '123', '2022-03-20 19:13:06', '2022-03-20 19:13:06', 1, 1, 1);
+
+-- ----------------------------
 -- Table structure for category
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
@@ -86,21 +165,6 @@ CREATE TABLE `config`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for country
--- ----------------------------
-DROP TABLE IF EXISTS `country`;
-CREATE TABLE `country`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `country` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of country
--- ----------------------------
-INSERT INTO `country` VALUES (1, 'chile');
-
--- ----------------------------
 -- Table structure for forum
 -- ----------------------------
 DROP TABLE IF EXISTS `forum`;
@@ -124,21 +188,6 @@ INSERT INTO `forum` VALUES (4, 'Foro 2', 'xd', 'https://th.bing.com/th/id/R.2d49
 INSERT INTO `forum` VALUES (5, 'Los xd', 'Foro para expresar tus xd', 'https://i.imgur.com/dcoYkMI.png', 3, 1);
 
 -- ----------------------------
--- Table structure for language
--- ----------------------------
-DROP TABLE IF EXISTS `language`;
-CREATE TABLE `language`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `language` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of language
--- ----------------------------
-INSERT INTO `language` VALUES (1, 'Español');
-
--- ----------------------------
 -- Table structure for reaction
 -- ----------------------------
 DROP TABLE IF EXISTS `reaction`;
@@ -150,66 +199,6 @@ CREATE TABLE `reaction`  (
 
 -- ----------------------------
 -- Records of reaction
--- ----------------------------
-
--- ----------------------------
--- Table structure for role
--- ----------------------------
-DROP TABLE IF EXISTS `role`;
-CREATE TABLE `role`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `role` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `card` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `permissions` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of role
--- ----------------------------
-INSERT INTO `role` VALUES (1, 'administrador', 'uwu', 'administrador');
-
--- ----------------------------
--- Table structure for thread
--- ----------------------------
-DROP TABLE IF EXISTS `thread`;
-CREATE TABLE `thread`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `body` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `date` datetime(0) NULL DEFAULT NULL,
-  `id_user_fk` int NULL DEFAULT NULL,
-  `id_topic_fk` int NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `id_user_thread`(`id_user_fk`) USING BTREE,
-  INDEX `id_topic_thread`(`id_topic_fk`) USING BTREE,
-  CONSTRAINT `id_topic_thread` FOREIGN KEY (`id_topic_fk`) REFERENCES `topic` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `id_user_thread` FOREIGN KEY (`id_user_fk`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of thread
--- ----------------------------
-
--- ----------------------------
--- Table structure for thread_has_reactions
--- ----------------------------
-DROP TABLE IF EXISTS `thread_has_reactions`;
-CREATE TABLE `thread_has_reactions`  (
-  `id_thread_has_reactions` int NOT NULL AUTO_INCREMENT,
-  `id_user_fk` int NULL DEFAULT NULL,
-  `id_reaction_fk` int NULL DEFAULT NULL,
-  `id_thread_fk` int NULL DEFAULT NULL,
-  PRIMARY KEY (`id_thread_has_reactions`) USING BTREE,
-  INDEX `id_user_thhr`(`id_user_fk`) USING BTREE,
-  INDEX `id_reaction_thhr`(`id_reaction_fk`) USING BTREE,
-  INDEX `id_thread_thhr`(`id_thread_fk`) USING BTREE,
-  CONSTRAINT `id_reaction_thhr` FOREIGN KEY (`id_reaction_fk`) REFERENCES `reaction` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `id_thread_thhr` FOREIGN KEY (`id_thread_fk`) REFERENCES `thread` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `id_user_thhr` FOREIGN KEY (`id_user_fk`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of thread_has_reactions
 -- ----------------------------
 
 -- ----------------------------
@@ -255,37 +244,47 @@ CREATE TABLE `topic_has_reactions`  (
 -- Records of topic_has_reactions
 -- ----------------------------
 
--- ----------------------------
--- Table structure for user
--- ----------------------------
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `mail` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `sign` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `location` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `picture` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `registration_date` datetime(0) NULL DEFAULT NULL,
-  `last_visit` datetime(0) NULL DEFAULT NULL,
-  `id_language_fk` int NULL DEFAULT NULL,
-  `id_role_fk` int NULL DEFAULT NULL,
-  `id_country_fk` int NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `id_country_user_fk`(`id_country_fk`) USING BTREE,
-  INDEX `id_language_user`(`id_language_fk`) USING BTREE,
-  INDEX `id_role_user`(`id_role_fk`) USING BTREE,
-  CONSTRAINT `id_country_user_fk` FOREIGN KEY (`id_country_fk`) REFERENCES `country` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `id_language_user` FOREIGN KEY (`id_language_fk`) REFERENCES `language` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `id_role_user` FOREIGN KEY (`id_role_fk`) REFERENCES `role` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of user
--- ----------------------------
-INSERT INTO `user` VALUES (10, 'Pablo Prieto', 'pabvlov', 'pablojavierprietocepeda@gmail.com', '123', 'uwu', 'killpue', '123', '2022-03-20 19:13:06', '2022-03-20 19:13:06', 1, 1, 1);
-INSERT INTO `user` VALUES (11, 'Daniel Avila', 'amurpo', 'danielavila@gmail.com', '123', 'uwu', 'killpue', '123', '2022-03-20 19:13:06', '2022-03-20 19:13:06', 1, 1, 1);
-
 SET FOREIGN_KEY_CHECKS = 1;
+
+-- ----------------------------
+-- Table structure for thread
+-- ----------------------------
+DROP TABLE IF EXISTS `thread`;
+CREATE TABLE `thread`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `body` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `date` datetime(0) NULL DEFAULT NULL,
+  `id_user_fk` int NULL DEFAULT NULL,
+  `id_topic_fk` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `id_user_thread`(`id_user_fk`) USING BTREE,
+  INDEX `id_topic_thread`(`id_topic_fk`) USING BTREE,
+  CONSTRAINT `id_topic_thread` FOREIGN KEY (`id_topic_fk`) REFERENCES `topic` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `id_user_thread` FOREIGN KEY (`id_user_fk`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of thread
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for thread_has_reactions
+-- ----------------------------
+DROP TABLE IF EXISTS `thread_has_reactions`;
+CREATE TABLE `thread_has_reactions`  (
+  `id_thread_has_reactions` int NOT NULL AUTO_INCREMENT,
+  `id_user_fk` int NULL DEFAULT NULL,
+  `id_reaction_fk` int NULL DEFAULT NULL,
+  `id_thread_fk` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id_thread_has_reactions`) USING BTREE,
+  INDEX `id_user_thhr`(`id_user_fk`) USING BTREE,
+  INDEX `id_reaction_thhr`(`id_reaction_fk`) USING BTREE,
+  INDEX `id_thread_thhr`(`id_thread_fk`) USING BTREE,
+  CONSTRAINT `id_reaction_thhr` FOREIGN KEY (`id_reaction_fk`) REFERENCES `reaction` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `id_thread_thhr` FOREIGN KEY (`id_thread_fk`) REFERENCES `thread` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `id_user_thhr` FOREIGN KEY (`id_user_fk`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of thread_has_reactions
+-- ----------------------------
