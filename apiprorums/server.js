@@ -18,10 +18,14 @@ app.get("/", (req, res) => {
   res.json({ message: "ok" });
 });
 app.get("/users", usersRouter);
+
 app.get("/categories", categoriesRouter);
 app.get("/categories/:id/forums", categoriesRouter);
+
 app.get("/forums", forumsRouter);
 app.get("/forums/:id", forumsRouter);
+
+
 /* Error handler middleware */
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
