@@ -9,13 +9,6 @@ async function getMultiple(){
   return category;
 }
 
-async function getCategoryForums(){
-  const category = await db.query(`SELECT * FROM forum`);
-
-  return category;
-}
-
 module.exports = {
   getMultiple,
-  getCategoryForums
 }

@@ -1,13 +1,13 @@
 <div class="card border-gradient" *ngFor="let category of categories">
     <div >
-        <h5 class="card-header bg-animated">{{ category.name }}</h5>
-        <div class="card-body">
-            <app-forum></app-forum>
-            <app-forum></app-forum>
-            <app-forum></app-forum>
-            <app-forum></app-forum>
-            <div *ngFor="let forum of category.forums">
-                <app-forum [id]=forum.id></app-forum>
+        <div class="card-header bg-animated">
+            <h5>{{ category.name }}</h5>
+            <p>{{ category.description }}</p>
+        </div>
+        
+        <div *ngFor="let forum of forums">
+            <div class="card-body" *ngIf="forum.id_category_fk === category.id">
+                <app-forum [id_foro]="forum.id"></app-forum>
             </div>
         </div>
     </div>

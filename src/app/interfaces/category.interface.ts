@@ -14,7 +14,6 @@ export interface Category {
     name:        string;
     description: null | string;
     position:    number;
-    forums:       Forum[];
 }
 
 // Converts JSON strings to/from your types

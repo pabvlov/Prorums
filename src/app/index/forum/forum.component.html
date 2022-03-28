@@ -1,9 +1,9 @@
 <a href="">
     <div class="row foro">
-        <div class="col-2 d-none d-lg-block d-print-block img"><img src="../../../assets/img/no-user-image-icon.jpg" class="img-fluid"></div>
+        <div class="col-2 d-none d-lg-block d-print-block img"><img src="{{ foro.picture }}" class="img-fluid"></div>
         <div class="col-lg-10 col-sm-12">
-            <h5 class="card-title"><!-- {{ forum.name }} -->Categoria</h5>
-            <p class="card-text"><!-- {{ forum.description }} --> Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <h5 class="card-title">{{ foro.name }}</h5>
+            <p class="card-text">{{ foro.description }} </p>
         </div>
     </div>
 </a>

@@ -11,7 +11,7 @@ import { UserService } from '../services/user.service';
 })
 export class IndexComponent implements OnInit {
 
-  users: User[] = this.userService.getList();
+  //users: User[] = this.userService.getList();
   categories: Category[] = this.categoryService.getList();
   
   constructor(private userService: UserService, private categoryService: CategoryService) {
