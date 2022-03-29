@@ -17,3 +17,21 @@ ul {
     border-image-slice: 1;
     border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
 }
+
+button {
+    border: 0;
+    background-color: transparent;
+}
+
+a, a.nav-link {
+    padding: 0.5rem 1rem;
+    margin: 0 !important;
+}
+
+form {
+    padding: 20px;
+}
+
+input {
+    margin-bottom: 10px;
+}
