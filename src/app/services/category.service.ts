@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Category } from '../interfaces/category.interface';
-import { Forum } from '../interfaces/forum.interface';
 
 @Injectable({
   providedIn: 'root'
