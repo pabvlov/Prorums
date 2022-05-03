@@ -11,11 +11,11 @@ router.get('/forums', async function(req, res, next) {
   }
 });
 
-router.get('/forums/:id', async function(req, res, next) {
+router.get('/forum/:id', async function(req, res, next) {
   try {
     res.json(await forums.getById(req.params.id));
   } catch (err) {
-    console.error(`Error while getting forums `, err.message);
+    console.error(`Error while getting forum `, err.message);
     next(err);
   }
 });

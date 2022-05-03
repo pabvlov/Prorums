@@ -3,9 +3,7 @@ const db = require('./db');
 const config = require('../../config/db.config'); */
 
 async function getMultiple(){
-  //const offset = helper.getOffset(page, config.listPerPage);
-  const category = await db.query(`SELECT * FROM category`);
-
+  const category = await db.query(`SELECT * FROM categoria`);
   return category;
 }
 

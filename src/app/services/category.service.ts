@@ -17,9 +17,9 @@ export class CategoryService {
       for (let index = 0; index < resp.length; index++) {
         let category: Category = {
           id:                 resp[index].id,
-          name:               resp[index].name,
-          description:        resp[index].description,
-          position:           resp[index].position
+          name:               resp[index].nombre,
+          description:        resp[index].descripcion,
+          position:           resp[index].posicion
         };
         categories.push(category);
       }

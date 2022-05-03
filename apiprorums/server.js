@@ -6,6 +6,7 @@ const port = 3000;
 const usersRouter = require("./app/routes/user.routes");
 const categoriesRouter = require("./app/routes/category.routes");
 const forumsRouter = require("./app/routes/forum.routes");
+const topicsRouter = require("./app/routes/topic.routes");
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -20,10 +21,14 @@ app.get("/", (req, res) => {
 app.get("/users", usersRouter);
 
 app.get("/categories", categoriesRouter);
-app.get("/categories/:id/forums", categoriesRouter);
+app.get("/categorie/:id/forums", categoriesRouter);
 
 app.get("/forums", forumsRouter);
-app.get("/forums/:id", forumsRouter);
+app.get("/forum/:id", forumsRouter);
+
+app.get("/topics/", topicsRouter);
+app.get("/topics/:id", topicsRouter);
+app.get("/topic/:id", topicsRouter);
 
 
 /* Error handler middleware */

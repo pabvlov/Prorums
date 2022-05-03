@@ -1,9 +1,9 @@
-<a href="">
+<a [href]="'/topics/' + foro.id">
     <div class="row foro">
-        <div class="col-2 d-none d-lg-block d-print-block img"><img src="{{ foro.picture }}" class="img-fluid"></div>
+        <div class="col-2 d-none d-lg-block d-print-block img"><img src="{{ foro.foto }}" class="img-fluid"></div>
         <div class="col-lg-10 col-sm-12">
-            <h5 class="card-title">{{ foro.name }}</h5>
-            <p class="card-text">{{ foro.description }} </p>
+            <h5 class="card-title">{{ foro.nombre }}</h5>
+            <p class="card-text">{{ foro.descripcion }} </p>
         </div>
     </div>
 </a>

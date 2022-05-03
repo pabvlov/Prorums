@@ -1,13 +1,12 @@
 const db = require('./db');
 
 async function getMultiple(){
-  const category = await db.query(`SELECT * FROM forum`);
-
+  const category = await db.query(`SELECT * FROM foro`);
   return category;
 }
 
 async function getById(id){
-    const category = await db.query(`SELECT * FROM forum WHERE id = ${id}`);
+    const category = await db.query(`SELECT * FROM foro WHERE id = ${id}`);
     return category;
 }
 

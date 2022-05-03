@@ -6,19 +6,27 @@ import { AppComponent } from './app.component';
 import { IndexModule } from './index/index.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from  '@angular/common/http';
+import { TopicsComponent } from './topics/topics.component';
+import { TopicComponent } from './topic/topic.component';
+import { CommonModule, DatePipe } from '@angular/common';
+import { ToggleDirective } from './toggle.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
+    TopicsComponent,
+    TopicComponent,
+    ToggleDirective,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
     IndexModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

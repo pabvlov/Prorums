@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Convert, User } from '../interfaces/user.interface';
 
 @Injectable({
@@ -36,6 +36,11 @@ export class UserService {
       }
     });
     return users;
+  }
+
+  getById(id: number): Observable<User> {
+    return this.httpClient.get<User[]>('http://localhost:3000/user/' + id)
+    .pipe(map((response: User[]) => response[0]));
   }
   
 }

@@ -12,7 +12,7 @@ router.get('/categories', async function(req, res, next) {
   }
 });
 
-router.get('/categories/:id/forums', async function(req, res, next) {
+router.get('/categorie/:id/forums', async function(req, res, next) {
   try {
     res.json(await category.getCategoryForums(req.query.page, parseInt(req.params.id)));
   } catch (err) {

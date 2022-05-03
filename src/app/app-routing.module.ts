@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './index/index.component';
+import { TopicsComponent } from './topics/topics.component';
 
 const routes: Routes = [
   {
@@ -14,7 +15,11 @@ const routes: Routes = [
   },
   {
     path: 'forum',
-    component: IndexComponent
+    component: TopicsComponent
+  },
+  {
+    path: 'topics/:id',
+    component: TopicsComponent
   },
   {
     path: '**',
