@@ -1,7 +1,7 @@
 const db = require('./db');
 
 async function getMultiple(){
-  const category = await db.query(`SELECT * FROM tema`);
+  const category = await db.query(`SELECT * FROM tema ORDER BY fecha DESC`);
   return category;
 }
 

@@ -13,13 +13,13 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     CategoryComponent,
     IndexComponent,
-    ForumComponent
+    ForumComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   exports: [
   ]

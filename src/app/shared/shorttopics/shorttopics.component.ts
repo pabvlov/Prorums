@@ -1,16 +1,14 @@
-import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Topics } from '../interfaces/topic.interface';
-import { TopicService } from '../services/topic.service';
-
+import { Topics } from 'src/app/interfaces/topic.interface';
+import { TopicService } from 'src/app/services/topic.service';
 
 @Component({
-  selector: 'app-topic',
-  templateUrl: './topic.component.html',
-  styleUrls: ['./topic.component.css']
+  selector: 'app-shorttopics',
+  templateUrl: './shorttopics.component.html',
+  styleUrls: ['./shorttopics.component.css']
 })
-export class TopicComponent implements OnInit {
+export class ShorttopicsComponent {
   @Input() id_tema: number = 3;
   constructor(private topicService: TopicService, 
               private route: ActivatedRoute) { }
@@ -20,5 +18,4 @@ export class TopicComponent implements OnInit {
       this.tema = data;
     });
   }
-
 }

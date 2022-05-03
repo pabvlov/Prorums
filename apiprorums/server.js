@@ -40,5 +40,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Servidor API Prorums abierto en -> http://localhost:${port}`);
 });

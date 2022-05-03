@@ -7,7 +7,7 @@ import { IndexModule } from './index/index.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from  '@angular/common/http';
 import { TopicsComponent } from './topics/topics.component';
-import { TopicComponent } from './topic/topic.component';
+import { TopicComponent } from './shared/topic/topic.component';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ToggleDirective } from './toggle.directive';
 
@@ -15,7 +15,6 @@ import { ToggleDirective } from './toggle.directive';
   declarations: [
     AppComponent,
     TopicsComponent,
-    TopicComponent,
     ToggleDirective,
   ],
   imports: [
@@ -27,6 +26,6 @@ import { ToggleDirective } from './toggle.directive';
     CommonModule
   ],
   providers: [DatePipe],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
