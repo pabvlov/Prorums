@@ -29,4 +29,13 @@ router.get('/topic/:id', async function(req, res, next) {
   }
 });
 
+router.get('/user/:id/topics', async function(req, res, next) {
+  try {
+    res.json(await topic.getByUser(parseInt(req.params.id)));
+  } catch (err) {
+    console.error(`Error while getting that topic `, err.message);
+    next(err);
+  }
+});
+
 module.exports = router;

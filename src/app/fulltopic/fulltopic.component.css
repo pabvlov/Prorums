@@ -1,0 +1,23 @@
+.info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+@media (max-width: 500px) {
+    .info {
+      flex-direction: column;
+    }
+  }
+
+h5 {
+    padding: 10px;
+}
+
+.foto {
+    height: 100px !important;
+    text-align: center;
+}
+
+img {
+    height: 100%;
+}

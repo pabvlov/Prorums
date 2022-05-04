@@ -1,4 +1,8 @@
 <div class="separator animate__animated animate__fadeIn animate__faster">
+    <div class="right">
+        <a [href]="'/post/' + id_foro" class="btn bg-animated">Publicar</a>
+    </div>
+    <br>
     <div class="card-header bg-animated">
         <h5>{{ foro.nombre }}</h5>
         <p>{{ foro.descripcion }}</p>
@@ -8,4 +12,10 @@
             <app-topic [id_tema]="tema.id"></app-topic>
         </div>
     </div>
+    <br>
+    <div class="right">
+        <a [href]="'/post/' + id_foro" class="btn bg-animated">Publicar</a>
+    </div>
+    
 </div>
+<br>

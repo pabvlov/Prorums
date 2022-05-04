@@ -1,11 +1,12 @@
 <a [href]="'/topic/' + tema.id">
     <div class="topic">
-            <h5 class="card-title">{{ tema.titulo }}</h5>
-            <p class="card-title">
+            <h6 class="card-title">{{ tema.titulo }}</h6>
+            <div class="card-title spacebet">
                 <a [href]="'/user/' + tema.id_usuario_fk" target="_blank" rel="noopener noreferrer">
                     <span class="badge bg-animated">{{ tema.escritor }}</span>
                 </a>
-                <p class="little">{{ tema.fecha | date:'medium' }}</p>
-        <hr class="border-gradient-mini">
+                <p class="little">{{ tema.fecha | date }}</p>
+            </div>
+        <hr class="border-gradient">
     </div>
 </a>

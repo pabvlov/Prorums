@@ -20,4 +20,13 @@ router.get('/forum/:id', async function(req, res, next) {
   }
 });
 
+router.get('/user/:id/forums', async function(req, res, next) {
+  try {
+    res.json(await forums.getByUser(req.params.id));
+  } catch (err) {
+    console.error(`Error while getting forum `, err.message);
+    next(err);
+  }
+});
+
 module.exports = router;

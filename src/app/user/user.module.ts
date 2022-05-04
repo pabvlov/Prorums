@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { UserComponent } from './user.component';
 import { SharedModule } from '../shared/shared.module';
-import { NavbarComponent } from '../shared/navbar/navbar.component';
 
 
 
 @NgModule({
   declarations: [
+    UserComponent
   ],
   imports: [
     CommonModule,
     SharedModule
   ]
 })
-export class ForumModule { }
+export class UserModule { }

@@ -19,6 +19,7 @@ app.get("/", (req, res) => {
   res.json({ message: "ok" });
 });
 app.get("/users", usersRouter);
+app.get("/user/:id", usersRouter);
 
 app.get("/categories", categoriesRouter);
 app.get("/categorie/:id/forums", categoriesRouter);
@@ -29,6 +30,7 @@ app.get("/forum/:id", forumsRouter);
 app.get("/topics/", topicsRouter);
 app.get("/topics/:id", topicsRouter);
 app.get("/topic/:id", topicsRouter);
+app.get("/user/:id/topics", topicsRouter);
 
 
 /* Error handler middleware */

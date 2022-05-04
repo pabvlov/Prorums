@@ -1,0 +1,18 @@
+a {
+    color: white;
+    margin: auto;
+}
+
+.align {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.align2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+p {
+    margin: auto;
+}

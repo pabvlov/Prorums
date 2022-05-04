@@ -19,18 +19,16 @@ export class UserService {
       for (let index = 0; index < resp.length; index++) {
         let user: User = {
           id:                 resp[index].id,
-          name:               resp[index].name,
-          nickname:           resp[index].nickname,
-          mail:               resp[index].mail,
+          nombre:               resp[index].nombre,
+          apodo:           resp[index].apodo,
+          correo:               resp[index].correo,
           password:           resp[index].password,
-          sign:               resp[index].sign,
-          location:           resp[index].location,
-          picture:            resp[index].picture,
-          registration_date:  resp[index].registration_date,
-          last_visit:         resp[index].last_visit,
-          id_language_fk:     resp[index].id_language_fk,
-          id_role_fk:         resp[index].id_role_fk,
-          id_country_fk:      resp[index].id_country_fk,
+          firma:               resp[index].firma,
+          ubicacion:           resp[index].ubicacion,
+          foto:            resp[index].foto,
+          fecha_registro:  resp[index].fecha_registro,
+          ultima_visita:         resp[index].ultima_visita,
+          pais:             resp[index].pais,
         };
         users.push(user);
       }

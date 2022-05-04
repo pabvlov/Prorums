@@ -8,6 +8,35 @@ p, h5 {
 }
 
 .temas {
-    height: 305px;
-    overflow-y: scroll;
+    max-height: 305px;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
 }
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #ff00ea #333333;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #333333;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: linear-gradient(68deg, #ee00ff, #004dff, #860089);
+    background-size: 600% 600%;
+    color: white;
+    -webkit-animation: gradient 7s ease infinite;
+    -moz-animation: gradient 7s ease infinite;
+    -o-animation: gradient 7s ease infinite;
+    animation: gradient 7s ease infinite;
+    border-radius: 10px;
+    border: 0px groove #ffffff;
+  }

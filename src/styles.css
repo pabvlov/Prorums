@@ -19,6 +19,13 @@ body.dark-theme p{
 body {
     transition: .3s ease;
     background-color: #333;
+    background: linear-gradient(68deg, #190074, #000000, #0b003d);
+    background-size: 600% 600%;
+    color: white;
+    -webkit-animation: gradient 7s ease infinite;
+    -moz-animation: gradient 7s ease infinite;
+    -o-animation: gradient 7s ease infinite;
+    animation: gradient 7s ease infinite;
 }
 
 
@@ -38,7 +45,22 @@ body {
 .border-gradient {
     border-bottom: 5px solid;
     border-image-slice: 1;
-    border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+    border-image-source: linear-gradient(68deg, #ee00ff, #004dff, #860089);
+    border-image-repeat: 600% 600%;
+    -webkit-animation: gradient 7s ease infinite;
+    -moz-animation: gradient 7s ease infinite;
+    -o-animation: gradient 7s ease infinite;
+    animation: gradient 7s ease infinite;
+}
+
+.border-full-gradient {
+    border: 5px solid;
+    border-image-slice: 4;
+    border-image-source: linear-gradient(68deg, #ee00ff, #004dff, #860089);
+    -webkit-animation: gradient 7s ease infinite;
+    -moz-animation: gradient 7s ease infinite;
+    -o-animation: gradient 7s ease infinite;
+    animation: gradient 7s ease infinite;
 }
 
 .border-gradient-mini {
@@ -86,4 +108,8 @@ body {
 
 .separator {
     margin-top: 30px;
+}
+
+h1, h2, h3, h4, h5, h6, label {
+    color: white;
 }

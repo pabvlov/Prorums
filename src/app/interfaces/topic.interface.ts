@@ -22,10 +22,12 @@ export interface Topic {
     tipo:           string;
     id_foro_fk:     number;
     foto:           string;
-    id_user:        string;
+    id_usuario_fk:  number;
     escritor:       string;
     apodo_escritor: string;
     foro:           string;
     foto_foro:      string;
     categoria:      string;
+    pais:           string;
+    ultima_visita:  string;
 }

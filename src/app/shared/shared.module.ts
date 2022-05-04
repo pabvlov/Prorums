@@ -6,6 +6,7 @@ import { ChangelogComponent } from './changelog/changelog.component';
 import { AdvertisementsComponent } from './advertisements/advertisements.component';
 import { TopicComponent } from './topic/topic.component';
 import { ShorttopicsComponent } from './shorttopics/shorttopics.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { ShorttopicsComponent } from './shorttopics/shorttopics.component';
     AdvertisementsComponent,
     TopicComponent,
     ShorttopicsComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { ShorttopicsComponent } from './shorttopics/shorttopics.component';
     ChangelogComponent,
     AdvertisementsComponent,
     TopicComponent,
-    ShorttopicsComponent
+    ShorttopicsComponent,
+    FooterComponent,
   ]
 })
 export class SharedModule { }

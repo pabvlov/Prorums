@@ -1,0 +1,79 @@
+<br>
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="card border-gradient animate__animated animate__fadeIn animate__faster text-center">
+            
+            <div class="card-header bg-animated">
+                <div class="text-center mb-2">
+                    <img [src]="user.foto" alt="" class="img-fluid profile">
+                </div>
+                <h5>Tus temas:</h5>
+            </div>
+            <div class="temas">
+                <div *ngFor="let tema of temas"> 
+                    <div class="card-body">
+                        <app-shorttopics [id_tema]="tema.id"></app-shorttopics>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-8 col-md-8 col-sm-6">
+        <br>
+        <div class="align">
+            <div>
+                <h5>Nickname: {{ user.apodo }},</h5>
+                <h6>Última visita: {{ user.ultima_visita | date }}</h6>
+            </div>
+            <button type="submit" class="btn bg-animated">Guardar</button>
+        </div>
+        
+        <br><br>
+        <form>
+            
+            <div class="group">      
+              <input type="text" [value]="user.nombre" required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>Name</label>
+            </div>
+              
+            <div class="group">      
+              <input type="email" [value]="user.correo" required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>Email</label>
+            </div>
+
+            <div class="group">      
+              <textarea [value]="user.firma" required></textarea>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>Firma</label>
+            </div>
+
+            <div class="group">      
+                <input type="text" [value]="user.ubicacion" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Ubicación</label>
+            </div>
+
+            <div class="group">      
+                <input type="text" [value]="user.foto" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Foto</label>
+            </div>
+
+            <div class="group">      
+                <input type="text" [value]="user.pais" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Pais</label>
+            </div>
+            
+          </form>
+    </div>
+</div>

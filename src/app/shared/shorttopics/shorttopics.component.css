@@ -23,9 +23,34 @@ p {
 img {
     width: 55px;
     height: 55px;
-    object-fit: cover;
+    object-fit: fill;
 }
 
 .img {
     text-align: center;
+}
+
+.spacebet {
+    display: flex;
+    justify-content: space-between;
+}
+
+h6 {
+    text-align: start;
+}
+
+.card-title {
+    margin: 0;
+    padding: 0;
+}
+
+.card-body {
+    max-height: 100px;
+    padding: 10px 0 !important;
+    margin: 0;
+}
+
+.border-gradient {
+    padding: 0;
+    margin: 0;
 }

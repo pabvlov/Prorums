@@ -10,6 +10,9 @@ import { TopicsComponent } from './topics/topics.component';
 import { TopicComponent } from './shared/topic/topic.component';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ToggleDirective } from './toggle.directive';
+import { FulltopicComponent } from './fulltopic/fulltopic.component';
+import { FulltopicModule } from './fulltopic/fulltopic.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -23,9 +26,12 @@ import { ToggleDirective } from './toggle.directive';
     SharedModule,
     IndexModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    FulltopicModule,
+    UserModule
   ],
   providers: [DatePipe],
+  exports: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
