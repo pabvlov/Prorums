@@ -4,12 +4,12 @@
     </div>
     <br>
     <div class="card-header bg-animated">
-        <h5>{{ foro.nombre }}</h5>
-        <p>{{ foro.descripcion }}</p>
+        <h5>{{ ( foro$ | async )?.nombre }}</h5>
+        <p>{{ ( foro$ | async )?.descripcion }}</p>
     </div>
-    <div *ngFor="let tema of temas">
+    <div *ngFor="let tema of (temas$ | async)">
         <div class="card-body">
-            <app-topic [id_tema]="tema.id"></app-topic>
+            <app-topic id_tema="{{tema.id}}"></app-topic>
         </div>
     </div>
     <br>

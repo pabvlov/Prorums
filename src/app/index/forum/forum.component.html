@@ -1,9 +1,9 @@
-<a [href]="'/topics/' + foro.id">
+<a [href]="'/topics/' + (foro$ | async)?.id">
     <div class="row foro">
-        <div class="col-2 d-none d-lg-block d-print-block img"><img src="{{ foro.foto }}" class="img-fluid"></div>
+        <div class="col-2 d-none d-lg-block d-print-block img"><img src="{{ (foro$ | async)?.foto }}" class="img-fluid"></div>
         <div class="col-lg-10 col-sm-12">
-            <h5 class="card-title">{{ foro.nombre }}</h5>
-            <p class="card-text">{{ foro.descripcion }} </p>
+            <h5 class="card-title">{{ (foro$ | async)?.nombre }}</h5>
+            <p class="card-text">{{ (foro$ | async)?.descripcion }} </p>
         </div>
     </div>
 </a>

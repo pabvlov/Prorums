@@ -30,7 +30,7 @@ export class ForumService {
     return forums;
   }
 
-  getList() {
+  /* getList() {
     let lista = this.httpClient.get('http://localhost:3000/forums');
     let forums: Forum[] = []
     lista.subscribe((resp: any) => {         
@@ -47,6 +47,10 @@ export class ForumService {
       }
     });
     return forums;
+  } */
+
+  getList(): Observable<Forum[]> {
+    return this.httpClient.get<Forum[]>(`http://localhost:3000/forums`);
   }
 
   getById(id: number): Observable<Forum> {

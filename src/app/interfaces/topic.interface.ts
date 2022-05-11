@@ -3,7 +3,7 @@
 export interface Topics {
     id:               number;
     titulo:           string;
-    fecha:            Date;
+    fecha:            string;
     tipo:             string;
     id_foro_fk:       number;
     nombre_foro:      string;

@@ -5,14 +5,14 @@
             
             <div class="card-header bg-animated">
                 <div class="text-center mb-2">
-                    <img [src]="user.foto" alt="" class="img-fluid profile">
+                    <img [src]="(user$ | async)?.foto" alt="" class="img-fluid profile">
                 </div>
                 <h5>Tus temas:</h5>
             </div>
             <div class="temas">
                 <div *ngFor="let tema of temas"> 
                     <div class="card-body">
-                        <app-shorttopics [id_tema]="tema.id"></app-shorttopics>
+                        <app-shorttopics id_tema="{{tema.id}}"></app-shorttopics>
                     </div>
                 </div>
             </div>
@@ -23,8 +23,8 @@
         <br>
         <div class="align">
             <div>
-                <h5>Nickname: {{ user.apodo }},</h5>
-                <h6>Última visita: {{ user.ultima_visita | date }}</h6>
+                <h5>Nickname: {{ (user$ | async)?.apodo }},</h5>
+                <h6>Última visita: {{ (user$ | async)?.ultima_visita | date }}</h6>
             </div>
             <button type="submit" class="btn bg-animated">Guardar</button>
         </div>
@@ -33,42 +33,42 @@
         <form>
             
             <div class="group">      
-              <input type="text" [value]="user.nombre" required>
+              <input type="text" [value]="(user$ | async)?.nombre" required>
               <span class="highlight"></span>
               <span class="bar"></span>
               <label>Name</label>
             </div>
               
             <div class="group">      
-              <input type="email" [value]="user.correo" required>
+              <input type="email" [value]="(user$ | async)?.correo" required>
               <span class="highlight"></span>
               <span class="bar"></span>
               <label>Email</label>
             </div>
 
             <div class="group">      
-              <textarea [value]="user.firma" required></textarea>
+              <textarea [value]="(user$ | async)?.firma" required></textarea>
               <span class="highlight"></span>
               <span class="bar"></span>
               <label>Firma</label>
             </div>
 
             <div class="group">      
-                <input type="text" [value]="user.ubicacion" required>
+                <input type="text" [value]="(user$ | async)?.ubicacion" required>
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Ubicación</label>
             </div>
 
             <div class="group">      
-                <input type="text" [value]="user.foto" required>
+                <input type="text" [value]="(user$ | async)?.foto" required>
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Foto</label>
             </div>
 
             <div class="group">      
-                <input type="text" [value]="user.pais" required>
+                <input type="text" [value]="(user$ | async)?.pais" required>
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Pais</label>

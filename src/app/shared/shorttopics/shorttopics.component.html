@@ -1,11 +1,11 @@
-<a [href]="'/topic/' + tema.id">
+<a [href]="'/topic/' + (tema$ | async)?.id">
     <div class="topic">
-            <h6 class="card-title">{{ tema.titulo }}</h6>
+            <h6 class="card-title">{{ (tema$ | async)?.titulo }}</h6>
             <div class="card-title spacebet">
-                <a [href]="'/user/' + tema.id_usuario_fk" target="_blank" rel="noopener noreferrer">
-                    <span class="badge bg-animated">{{ tema.escritor }}</span>
+                <a [href]="'/user/' + (tema$ | async)?.id_usuario_fk" target="_blank" rel="noopener noreferrer">
+                    <span class="badge bg-animated">{{ (tema$ | async)?.escritor }}</span>
                 </a>
-                <p class="little">{{ tema.fecha | date }}</p>
+                <p class="little">{{ (tema$ | async)?.fecha | date:'short' }}</p>
             </div>
         <hr class="border-gradient">
     </div>

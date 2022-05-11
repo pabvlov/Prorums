@@ -1,27 +1,27 @@
 <br>
 <div class="content animate__animated animate__fadeIn animate__faster">
-    <h1>{{ topic.titulo }}</h1>
+    <h1>{{ (topic$ | async)?.titulo }}</h1>
     <div class="info">
-        <h5>Por: {{ topic.escritor }}<br>[ {{topic.apodo_escritor}} ]</h5>
-        <h5>Tipo: <button class="btn bg-animated btn-sm">{{ topic.tipo }}</button></h5>
-        <h5>Fecha: <button class="btn bg-animated btn-sm">{{ topic.fecha | date:'medium' }}</button></h5>
+        <h5>Por: {{ (topic$ | async)?.escritor }}<br>[ {{ (topic$ | async)?.apodo_escritor}} ]</h5>
+        <h5>Tipo: <button class="btn bg-animated btn-sm">{{ (topic$ | async)?.tipo }}</button></h5>
+        <h5>Fecha: <button class="btn bg-animated btn-sm">{{ (topic$ | async)?.fecha | date:'medium' }}</button></h5>
     </div>
     <div class="body">
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12">
-                <p>{{ topic.cuerpo }}</p>
+                <p>{{ (topic$ | async)?.cuerpo }}</p>
             </div>
             <div class="col-lg-4 col-md-8 col-sm-12">
                 <div class="card border-gradient">
                     <div class="card-body text-center">
-                      <h5 class="card-title text-center"><a [href]="'/user/' + topic.id_usuario_fk" class="btn bg-animated btn-sm">{{ topic.apodo_escritor }}</a></h5>
+                      <h5 class="card-title text-center"><a [href]="'/user/' + (topic$ | async)?.id_usuario_fk" class="btn bg-animated btn-sm">{{ (topic$ | async)?.apodo_escritor }}</a></h5>
                       <div class="foto">
-                        <img [src]="topic.foto" class="img-fluid border-full-gradient">
+                        <img [src]="(topic$ | async)?.foto" class="img-fluid border-full-gradient">
                       </div>
                       <br>
                       Última Conexión: 
-                      <p class="text-center">{{ topic.ultima_visita | date:'medium' }}</p>
-                      <p class="text-center">{{ topic.pais }}</p>
+                      <p class="text-center">{{ (topic$ | async)?.ultima_visita | date:'medium' }}</p>
+                      <p class="text-center">{{ (topic$ | async)?.pais }}</p>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Topics } from '../interfaces/topic.interface';
 import { User } from '../interfaces/user.interface';
 import { TopicService } from '../services/topic.service';
@@ -10,17 +11,11 @@ import { UserService } from '../services/user.service';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit {
+export class UserComponent {
 
   constructor(private userService: UserService, private route: ActivatedRoute, private topicService: TopicService) { }
   id_user = this.route.snapshot.params["id"];
-  user!: User;
-  ngOnInit(): void {
-    this.userService.getById(parseInt(this.id_user)).subscribe((data: User) => {
-      this.user = data;
-    })
-  }
-  
-  temas: Topics[] = this.topicService.getByUser(parseInt(this.id_user));   ;
+  user$: Observable<User> = this.userService.getById(parseInt(this.id_user)); 
+  temas: Topics[] = this.topicService.getByUser(parseInt(this.id_user));
 
 }

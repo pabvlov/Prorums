@@ -16,7 +16,7 @@ export class TopicService {
                 private forumService: ForumService,
                 private userService: UserService) { }
 
-  getAll() {
+  /* getAll() {
     let lista = this.httpClient.get('http://localhost:3000/topics');
     let topics: Topics[] = []
     lista.subscribe((resp: any) => {   
@@ -24,7 +24,7 @@ export class TopicService {
         let topic: Topics = {
           id:       resp[i].id,
           titulo:   resp[i].titulo,
-          fecha:    new Date(resp[i].fecha),
+          fecha:    resp[i].fecha,
           tipo:     resp[i].tipo, 
           id_foro_fk: resp[i].id_foro_fk,
           nombre_foro: resp[i].nombre_foro,
@@ -38,6 +38,10 @@ export class TopicService {
       }
     });
     return topics;
+  } */
+
+  getAll(): Observable<Topic[]> {
+    return this.httpClient.get<Topic[]>(`http://localhost:3000/topics`)
   }
 
   getByUser(user: number) {
@@ -48,7 +52,7 @@ export class TopicService {
         let topic: Topics = {
           id:       resp[i].id,
           titulo:   resp[i].titulo,
-          fecha:    new Date(resp[i].fecha),
+          fecha:    resp[i].fecha,
           tipo:     resp[i].tipo, 
           id_foro_fk: resp[i].id_foro_fk,
           nombre_foro: resp[i].nombre_foro,
@@ -64,7 +68,7 @@ export class TopicService {
     return topics;
   }
 
-  getTopics(forum: number) {
+  /* getTopics(forum: number) {
     let lista = this.httpClient.get('http://localhost:3000/topics/' + forum);
     let topics: Topics[] = []
     lista.subscribe((resp: any) => {   
@@ -72,7 +76,7 @@ export class TopicService {
         let topic: Topics = {
           id:       resp[i].id,
           titulo:   resp[i].titulo,
-          fecha:    new Date(resp[i].fecha),
+          fecha:    resp[i].fecha,
           tipo:     resp[i].tipo, 
           id_foro_fk: resp[i].id_foro_fk,
           nombre_foro: resp[i].nombre_foro,
@@ -86,6 +90,10 @@ export class TopicService {
       }
     });
     return topics;
+  } */
+
+  getTopics(forum: number): Observable<Topics[]> {
+    return this.httpClient.get<Topics[]>(`http://localhost:3000/topics/${forum}`)
   }
 
   getById(id: number): Observable<Topics> {

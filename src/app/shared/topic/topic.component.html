@@ -1,15 +1,15 @@
-<a [href]="'/topic/' + tema.id">
+<a [href]="'/topic/' + (tema$ | async)?.id">
     <div class="row topic">
-        <div class="col-lg-2 d-none d-lg-block d-print-block img"><img src="{{ tema.foto }}" class="img-fluid"></div>
+        <div class="col-lg-2 d-none d-lg-block d-print-block img"><img src="{{ (tema$ | async)?.foto }}" class="img-fluid"></div>
         <div class="col-lg-7 col-sm-8">
-            <h5 class="card-title">{{ tema.titulo }}</h5>
+            <h5 class="card-title">{{ (tema$ | async)?.titulo }}</h5>
         </div>
         <div class="col-lg-3 col-sm-4 d-none d-lg-block d-print-block">
             <p class="card-title">Iniciado por 
-                <a [href]="'/user/' + tema.id_usuario_fk" target="_blank" rel="noopener noreferrer">
-                    <span class="badge bg-animated">{{ tema.escritor }}</span>
+                <a [href]="'/user/' + (tema$ | async)?.id_usuario_fk" target="_blank" rel="noopener noreferrer">
+                    <span class="badge bg-animated">{{ (tema$ | async)?.escritor }}</span>
                 </a>
-                el {{ tema.fecha | date:'medium' }}
+                el {{ (tema$ | async)?.fecha | date:'medium' }}
                 
             </p>
         </div>
