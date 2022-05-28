@@ -17,7 +17,8 @@ p, h5 {
   /* Firefox */
   * {
     scrollbar-width: auto;
-    scrollbar-color: #ff00ea #333333;
+    /* scrollbar-color: #ff00ea #333333; */
+    scrollbar-color: #CC0000 !important;
   }
 
   /* Chrome, Edge, and Safari */
@@ -26,17 +27,18 @@ p, h5 {
   }
 
   *::-webkit-scrollbar-track {
-    background: #333333;
+    /* background: #333333; */
+    background-color: #fff;
   }
 
   *::-webkit-scrollbar-thumb {
-    background: linear-gradient(68deg, #ee00ff, #004dff, #860089);
+    /* background: linear-gradient(68deg, #ee00ff, #004dff, #860089); */
     background-size: 600% 600%;
+    background-color: #cc0000;
     color: white;
-    -webkit-animation: gradient 7s ease infinite;
+    /* -webkit-animation: gradient 7s ease infinite;
     -moz-animation: gradient 7s ease infinite;
     -o-animation: gradient 7s ease infinite;
-    animation: gradient 7s ease infinite;
-    border-radius: 10px;
+    animation: gradient 7s ease infinite; */
     border: 0px groove #ffffff;
   }

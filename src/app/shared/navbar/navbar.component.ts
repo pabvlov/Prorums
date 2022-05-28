@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TokenGenerator } from 'ts-token-generator';
 
 @Component({
@@ -6,13 +7,18 @@ import { TokenGenerator } from 'ts-token-generator';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
 
-  constructor() { }
-  
+  loginForm: FormGroup = this.fb.group({
+    email:  ['', [ Validators.required, Validators.email]],
+    password: [ '', [ Validators.required, Validators.minLength(3)]]
+  })
 
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder) { }
+
+  login() {
+    console.log(this.loginForm.value);
+    console.log(this.loginForm.valid);
     
   }
-
 }

@@ -16,7 +16,7 @@
                     <div class="card-body text-center">
                       <h5 class="card-title text-center"><a [href]="'/user/' + (topic$ | async)?.id_usuario_fk" class="btn bg-animated btn-sm">{{ (topic$ | async)?.apodo_escritor }}</a></h5>
                       <div class="foto">
-                        <img [src]="(topic$ | async)?.foto" class="img-fluid border-full-gradient">
+                        <img [src]="(topic$ | async)?.foto" class="img-fluid">
                       </div>
                       <br>
                       Última Conexión: 

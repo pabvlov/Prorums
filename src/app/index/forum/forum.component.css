@@ -3,8 +3,8 @@ a {
     color: black;
 }
 
-p {
-    color: grey;
+h5, p {
+    color: black !important;
 }
 
 .card-header {

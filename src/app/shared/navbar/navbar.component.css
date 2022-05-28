@@ -6,7 +6,7 @@ a, button {
     align-items: center;
     text-align: center;
     margin: auto;
-    color: white;
+    color: #000;
 }
 
 ul {
@@ -14,9 +14,9 @@ ul {
 }
 
 .imguwu {
-    border: 2px solid;
+    border: 2px solid #c00;
     border-image-slice: 1;
-    border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+    /* border-image-source: linear-gradient(to left, #743ad5, #d53a9d); */
 }
 
 button {
@@ -66,7 +66,7 @@ h2 		 {
   
   /* LABEL ======================================= */
   label 				 {
-    color:white; 
+    color:black; 
     font-size:18px;
     font-weight:normal;
     position:absolute;
@@ -83,7 +83,7 @@ h2 		 {
   input:focus ~ label, input:valid ~ label, textarea:focus ~ label, textarea:valid ~ label 		{
     top:-20px;
     font-size:14px;
-    color:white;
+    color:black; 
   }
   
   /* BOTTOM BARS ================================= */
@@ -95,7 +95,7 @@ h2 		 {
       position:absolute;
       background: linear-gradient(68deg, #ee00ff, #004dff, #860089);
       background-size: 600% 600%;
-      color: white;
+      color:black; 
       -webkit-animation: gradient 7s ease infinite;
       -moz-animation: gradient 7s ease infinite;
       -o-animation: gradient 7s ease infinite;

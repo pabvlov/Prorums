@@ -7,6 +7,7 @@ import { AdvertisementsComponent } from './advertisements/advertisements.compone
 import { TopicComponent } from './topic/topic.component';
 import { ShorttopicsComponent } from './shorttopics/shorttopics.component';
 import { FooterComponent } from './footer/footer.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { FooterComponent } from './footer/footer.component';
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule, ReactiveFormsModule
   ],
   exports: [
     NavbarComponent,
