@@ -7,6 +7,10 @@ a {
     display: flex;
 }
 
+.align2 {
+    display: flex;
+}
+
 p {
     margin: auto;
 }
