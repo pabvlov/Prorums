@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { Convert, User } from '../interfaces/user.interface';
+import { map, Observable, tap } from 'rxjs';
+import { Session } from '../interfaces/session.interface';
+import { User } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,10 @@ import { Convert, User } from '../interfaces/user.interface';
 export class UserService {
 
   constructor(private httpClient: HttpClient) { }
+
+  private _usuario: User = {
+    nombre: ''
+  };
  
   getList():Array<User> {
     let users: User[] = [];
@@ -22,7 +27,6 @@ export class UserService {
           nombre:               resp[index].nombre,
           apodo:           resp[index].apodo,
           correo:               resp[index].correo,
-          password:           resp[index].password,
           firma:               resp[index].firma,
           ubicacion:           resp[index].ubicacion,
           foto:            resp[index].foto,
@@ -39,6 +43,67 @@ export class UserService {
   getById(id: number): Observable<User> {
     return this.httpClient.get<User[]>('http://localhost:3000/user/' + id)
     .pipe(map((response: User[]) => response[0]));
+  }
+
+  getByIdNotObserver(id: number) {
+    return this.httpClient.get<User>('http://localhost:3000/user/' + id)
+      .pipe(
+        map( resp => {
+          this._usuario = {
+            id: resp.id,
+            nombre: resp.nombre,
+            apodo: resp.apodo,
+            correo: resp.correo,
+            firma: resp.firma,
+            ubicacion: resp.ubicacion,
+            foto: resp.ubicacion,
+            fecha_registro: resp.fecha_registro,
+            ultima_visita: resp.ultima_visita,
+            pais: resp.pais,
+          }
+        })
+      )
+  }
+
+  get usuario() {
+    return { ...this._usuario }
+  }
+
+  getSession(mail: string, password: string) {
+    const url = `http://localhost:3000/auth/login`
+    const body = { mail, password }
+    return this.httpClient.post<Session>(url, body)
+      .pipe(
+        tap( resp => {
+          if( resp.ok ) {
+            localStorage.setItem('token', resp.token!)
+            this._usuario = {
+              id: resp.uid!,
+              nombre: resp.nombre!,
+              foto: resp.foto!
+            }
+          }
+        } ),
+        map( resp => resp.ok )
+      )
+  }
+
+  validarToken() {
+    const url = 'http://localhost:3000/auth/renew'
+    console.log(localStorage.getItem('token'))
+    const body = { token: localStorage.getItem('token') }
+
+    return this.httpClient.post<Session>(url, body)
+      .pipe(
+        tap( resp => {
+            this._usuario = {
+              id: resp.uid!,
+              nombre: resp.nombre!,
+              foto: resp.foto!
+            }
+        })
+      )
+
   }
   
 }

@@ -1,4 +1,4 @@
-<section class="container">
+<section>
   <div class="container">
     <nav class="navbar">
       <div class="container-fluid">
@@ -8,19 +8,32 @@
           </svg>
           Prorums
         </a>
-        <ul class="nav justify-content-center">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <button type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#login-modal">Ingresar</button>
-          </li>
-          <li class="nav-item">
-            <a class="navbar-brand" href="#">
-              <img src="../../../assets/img/no-user-image-icon.jpg" alt="foto perfil" style="width:40px;" class="imguwu"> 
-            </a>
-          </li>
-        </ul>
+
+        <ng-container *ngIf="usuario.nombre != ''; then loggedIn; else notLoggedIn"></ng-container>
+
+        <ng-template #loggedIn>
+          <ul class="nav justify-content-center" #loggedIn>
+            <li class="nav-item">
+              <button type="button" class="nav-link">
+                {{ usuario.nombre }}
+              <button (click)="logout()">(Logout)</button></button>
+            </li>
+            <li class="nav-item">
+              <a class="navbar-brand" href="#">
+                <img [src]="usuario.foto" alt="foto perfil" class="imguwu"> 
+              </a>
+            </li>
+          </ul>
+        </ng-template>
+        
+        <ng-template #notLoggedIn>
+          <ul class="nav justify-content-center" >
+            <li class="nav-item">
+              <button type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#login-modal">Ingresar</button>
+            </li>
+          </ul>
+        </ng-template>
+        
       </div>
     </nav>
   </div>

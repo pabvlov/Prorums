@@ -8,18 +8,18 @@
 // match the expected interface, even if the JSON is valid.
 
 export interface User {
-    id:                 number;
-    nombre:             string;
-    apodo:              string;
-    correo:             string;
-    password:           string;
-    firma:              string;
-    ubicacion:          string;
-    foto:               string;
-    fecha_registro:     Date;
-    ultima_visita:      Date;
-    pais:               number;
+    id?:                 number;
+    nombre?:             string;
+    apodo?:              string;
+    correo?:             string;
+    firma?:              string;
+    ubicacion?:          string;
+    foto?:               string;
+    fecha_registro?:     Date;
+    ultima_visita?:      Date;
+    pais?:               number;
 }
+
 
 // Converts JSON strings to/from your types
 // and asserts the results of JSON.parse at runtime
