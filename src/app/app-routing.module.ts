@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FulltopicComponent } from './fulltopic/fulltopic.component';
 import { IndexComponent } from './index/index.component';
+import { PostComponent } from './post/post.component';
 import { TopicsComponent } from './topics/topics.component';
 import { UserComponent } from './user/user.component';
 
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'forum',
     component: TopicsComponent
+  },
+  {
+    path: 'post/:id',
+    component: PostComponent
   },
   {
     path: 'topics/:id',

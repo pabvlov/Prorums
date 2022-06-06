@@ -17,7 +17,7 @@ async function getByForum(id){
                                       FROM tema t 
                                       INNER JOIN usuario u on t.id_usuario_fk = u.id 
                                       INNER JOIN foro f on t.id_foro_fk = f.id
-                                      WHERE id_foro_fk = ${id}`);
+                                      WHERE id_foro_fk = ${id} ORDER BY fecha DESC`);
     return category;
 }
 
@@ -36,9 +36,14 @@ async function getById(id){
   return category;
 }
 
+async function post(titulo, categoria, cuerpo, id_foro, id_usuario) {
+  return db.query(`INSERT INTO tema (id, titulo, cuerpo, borrado, fecha, tipo, id_foro_fk, id_usuario_fk) VALUES (NULL, '${ titulo }', '${ cuerpo }', 0, NOW(), '${ categoria }', ${ id_foro }, ${ id_usuario });`)
+}
+
 module.exports = {
   getMultiple,
   getByForum,
   getById,
-  getByUser
+  getByUser,
+  post
 }

@@ -21,3 +21,10 @@ h5 {
 img {
     height: 100%;
 }
+
+pre {
+    color: black;
+    font-size: large;
+    white-space: normal !important;
+    word-break: break-word;
+}

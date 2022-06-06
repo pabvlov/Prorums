@@ -1,0 +1,77 @@
+<form class="mt-10" [formGroup]="topicForm" (submit)="post()">
+            
+    <div class="group">      
+      <input type="text" formControlName="titulo" required>
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Titulo</label>
+    </div>
+
+    <div class="group">      
+        <input type="text" formControlName="categoria" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Categoria</label>
+      </div>
+      
+    <div class="group">      
+        <textarea formControlName="cuerpo" required></textarea>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Cuerpo</label>
+    </div>
+    <ng-container *ngIf="topicForm.valid; then valid; else invalid"></ng-container>
+    <ng-template #valid>
+        <p>{{ ok }}</p>
+    </ng-template>
+    <ng-template #invalid>
+        <p *ngIf="ok != ''"><i class="fa-solid fa-xmark" style="color: red;"></i> {{ ok }}</p>
+    </ng-template>
+    
+    <div class="right">
+        <button type="submit" class="btn bg-animated">Publicar</button>
+    </div>
+</form>
+
+
+<h3>Vista previa:</h3>
+
+<br>
+
+<div class="content animate__animated animate__fadeIn animate__faster">
+    <h1>{{ this.topicForm.controls['titulo'].value }}</h1>
+    <div class="info">
+        <h5>Por: {{ (user$ | async)?.nombre }}<br>[ {{ (user$ | async)?.apodo}} ]</h5>
+        <ng-container *ngIf="this.topicForm.controls['categoria'].value != ''; then categoria;else notCategoria"></ng-container>
+        <ng-template #categoria>
+            <h5>Tipo: <button class="btn bg-animated btn-sm">{{ this.topicForm.controls['categoria'].value }}</button></h5>
+        </ng-template>
+        <ng-template #notCategoria>
+            <h5>Tipo: <button class="btn bg-animated btn-sm">Categoria</button></h5>
+        </ng-template>
+        <h5>Fecha: <button class="btn bg-animated btn-sm">{{ fecha_actual | date:'medium' }}</button></h5>
+    </div>
+    <div class="body">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12">
+                <code>{{ this.topicForm.controls['cuerpo'].value }}</code>
+            </div>
+            <div class="col-lg-4 col-md-8 col-sm-12">
+                <div class="card border-gradient">
+                    <div class="card-body text-center">
+                      <h5 class="card-title text-center"><a [href]="'/user/' + (user$ | async)?.id" class="btn bg-animated btn-sm">{{ (user$ | async)?.apodo }}</a></h5>
+                      <div class="foto">
+                        <img [src]="(user$ | async)?.foto" class="img-fluid">
+                      </div>
+                      <br>
+                      Última Conexión: 
+                      <p class="text-center">{{ (user$ | async)?.ultima_visita | date:'medium' }}</p>
+                      <p class="text-center">{{ (user$ | async)?.pais }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>

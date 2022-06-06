@@ -38,4 +38,21 @@ router.get('/user/:id/topics', async function(req, res, next) {
   }
 });
 
+router.post('/post/', async function(req, res, next) {
+  try {
+    const { titulo, categoria, cuerpo, id_foro, id_usuario } = req.body
+    await topic.post(titulo, categoria, cuerpo, id_foro, id_usuario)
+    return res.status(201).json({
+      ok: true,
+      msg: 'El tema fue creado con exito'
+    })
+  } catch (err) {
+    return res.status(200).json({
+      ok: false,
+      msg: 'Error posteando el tema: ' + err
+    })
+    next(err);
+  }
+});
+
 module.exports = router;

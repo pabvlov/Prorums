@@ -7,18 +7,19 @@ import { IndexModule } from './index/index.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from  '@angular/common/http';
 import { TopicsComponent } from './topics/topics.component';
-import { TopicComponent } from './shared/topic/topic.component';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ToggleDirective } from './toggle.directive';
-import { FulltopicComponent } from './fulltopic/fulltopic.component';
 import { FulltopicModule } from './fulltopic/fulltopic.module';
 import { UserModule } from './user/user.module';
+import { PostComponent } from './post/post.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopicsComponent,
     ToggleDirective,
+    PostComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +29,8 @@ import { UserModule } from './user/user.module';
     HttpClientModule,
     CommonModule,
     FulltopicModule,
-    UserModule
+    UserModule,
+    ReactiveFormsModule
   ],
   providers: [DatePipe],
   exports: [DatePipe],

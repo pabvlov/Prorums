@@ -33,6 +33,7 @@ app.get("/topics/", topicsRouter);
 app.get("/topics/:id", topicsRouter);
 app.get("/topic/:id", topicsRouter);
 app.get("/user/:id/topics", topicsRouter);
+app.post("/post", topicsRouter);
 // auth
 app.post("/auth/login", authRouter);
 app.post("/auth/register", authRouter);

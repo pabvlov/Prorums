@@ -63,7 +63,6 @@ try {
 router.post('/auth/renew', async function(req, res, next) {
     try {
       const { token } = req.body
-      console.log(token)
       if(!token) return res.status(401).json({
         ok: false,
         resp: 'Error en el token'

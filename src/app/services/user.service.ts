@@ -12,7 +12,8 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
 
   private _usuario: User = {
-    nombre: ''
+    nombre: '',
+    id: 0
   };
  
   getList():Array<User> {
@@ -90,7 +91,6 @@ export class UserService {
 
   validarToken() {
     const url = 'http://localhost:3000/auth/renew'
-    console.log(localStorage.getItem('token'))
     const body = { token: localStorage.getItem('token') }
 
     return this.httpClient.post<Session>(url, body)
@@ -107,3 +107,4 @@ export class UserService {
   }
   
 }
+

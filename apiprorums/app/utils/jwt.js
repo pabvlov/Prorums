@@ -18,12 +18,8 @@ const generarJWT = ( uid, name, foto ) => {
 
 const validarJWT = ( token ) => {
     const { uid, name, foto } = jwt.verify(token, process.env.SECRET_JWT_SEED)
-    console.log(uid, name)
     return { uid, name, foto }
 }
-
-
-
 module.exports = {
     generarJWT,
     validarJWT
