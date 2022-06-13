@@ -8,6 +8,7 @@ import { TopicComponent } from './topic/topic.component';
 import { ShorttopicsComponent } from './shorttopics/shorttopics.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TopicComponent,
     ShorttopicsComponent,
     FooterComponent,
+    RegisterComponent,
   ],
   imports: [
     CommonModule,

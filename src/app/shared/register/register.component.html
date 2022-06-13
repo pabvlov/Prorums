@@ -1,0 +1,45 @@
+<p class="error">{{ ok.msj }}</p>
+<form class="form" autocomplete="off" 
+            [formGroup]="registerForm" (submit)="register()">
+    <h4>Ingresar</h4>
+    <br>
+    <div class="group">      
+        <input type="email" formControlName="email" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Correo</label>
+    </div>
+    <div class="group">      
+        <input type="text" formControlName="name" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for="name">Nombre</label>
+    </div>
+    <div class="group">      
+        <input type="text" formControlName="nickname" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for="nickname">Apodo</label>
+    </div>
+    <div class="group">      
+        <input type="password" formControlName="password" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for="password">Contraseña</label>
+    </div>
+    <div class="group">      
+        <input type="password" formControlName="confirmPassword" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label for="confirmPassword">Confirmar Contraseña</label>
+    </div>
+    <button type="submit" class="btn bg-animated" [disabled]="registerForm.invalid">Registrar</button>
+    <br>
+    <p class="text-white text-center">¿No tienes cuenta?
+        <a type="button" class="nav-link text-white" 
+            routerLink="/register" 
+            routerLinkActive="active"
+            data-bs-toggle="modal" data-bs-target="#login-modal"
+            >Regístrate</a>
+        </p>
+</form>

@@ -1,0 +1,181 @@
+.form {
+    max-width: 480px;
+    margin: auto;
+}
+
+a.nav-link {
+    margin: 0 30px !important;
+}
+
+a, button {
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    color: #000;
+}
+
+ul {
+    padding: 10px 0;
+}
+
+.imguwu {
+    width:40px; 
+    height: 40px;
+    border: 2px solid #c00;
+    border-image-slice: 1;
+    object-fit: cover;
+    /* border-image-source: linear-gradient(to left, #743ad5, #d53a9d); */
+}
+
+button {
+    border: 0;
+    background-color: transparent;
+}
+
+a, a.nav-link {
+    padding: 0.5rem 1rem;
+    margin: 0 !important;
+}
+
+form {
+    padding: 20px;
+}
+
+h2 		 { 
+    text-align:center; 
+    margin-bottom:50px; 
+  }
+  h2 small { 
+    font-weight:normal; 
+    color:#888; 
+    display:block; 
+  }
+  
+  /* form starting stylings ------------------------------- */
+  .group 			  { 
+    position:relative; 
+    margin-bottom: 25px;
+  }
+  input, textarea				{
+    font-size:18px;
+    padding:10px 10px 10px 5px;
+    border:none;
+    background-color: rgb(211, 211, 211);
+    color: black;
+    font-size: 700;
+    text-align: center;
+    width: 100%;
+  }
+  input:focus, textarea:focus 		{ outline:none; }
+  
+  /* LABEL ======================================= */
+  label 				 {
+    color:black; 
+    font-size:18px;
+    font-weight:normal;
+    position:absolute;
+    pointer-events:none;
+    left:5px;
+    top:10px;
+    transition:0.2s ease all; 
+    -moz-transition:0.2s ease all; 
+    -webkit-transition:0.2s ease all;
+    
+  }
+  
+  /* active state */
+  input:focus ~ label, input:valid ~ label, textarea:focus ~ label, textarea:valid ~ label 		{
+    top:-20px;
+    font-size:14px;
+    color:black; 
+  }
+  
+  /* BOTTOM BARS ================================= */
+  .bar:before, .bar:after 	{
+      content:'';
+      height:3px; 
+      width:0;
+      bottom:1px; 
+      position:absolute;
+      background: linear-gradient(68deg, #ee00ff, #004dff, #860089);
+      background-size: 600% 600%;
+      color:black; 
+      -webkit-animation: gradient 7s ease infinite;
+      -moz-animation: gradient 7s ease infinite;
+      -o-animation: gradient 7s ease infinite;
+      animation: gradient 7s ease infinite;
+      transition:0.2s ease all; 
+  }
+  .bar:before {
+    left:50%;
+  }
+  .bar:after {
+    right:50%; 
+    transform: rotateY(180deg);
+  }
+  
+  /* active state */
+  input:focus ~ .bar:before, input:focus ~ .bar:after {
+    width:50%;
+  }
+  
+  /* HIGHLIGHTER ================================== */
+  .highlight {
+    position:absolute;
+    height:60%; 
+    top:25%; 
+    left:0;
+    pointer-events:none;
+    opacity:1;
+    
+  }
+  
+  /* active state */
+  input:focus ~ .highlight {
+    -webkit-animation:inputHighlighter 0.2s ease-in-out;
+    -moz-animation:inputHighlighter 0.2s ease-in-out;
+    animation:inputHighlighter 0.2s ease-in-out;
+  }
+  
+  /* ANIMATIONS ================ */
+  @-webkit-keyframes inputHighlighter {
+      from { 
+          background: linear-gradient(68deg, #ee00ff, #004dff, #860089);
+          background-size: 600% 600%;
+          color: black;
+          -webkit-animation: gradient 7s ease infinite;
+          -moz-animation: gradient 7s ease infinite;
+          -o-animation: gradient 7s ease infinite;
+          animation: gradient 7s ease infinite;
+       }
+    to 	{ width:0; background:transparent; }
+  }
+  @-moz-keyframes inputHighlighter {
+      from { 
+          background: linear-gradient(68deg, #ee00ff, #004dff, #860089);
+          background-size: 600% 600%;
+          color: black;
+          -webkit-animation: gradient 7s ease infinite;
+          -moz-animation: gradient 7s ease infinite;
+          -o-animation: gradient 7s ease infinite;
+          animation: gradient 7s ease infinite;
+       }
+    to 	{ width:0; background:transparent; }
+  }
+  @keyframes inputHighlighter {
+      from { 
+          background: linear-gradient(68deg, #ffffff, #004dff, #860089);
+          background-size: 600% 600%;
+          color: black;
+          -webkit-animation: gradient 7s ease infinite;
+          -moz-animation: gradient 7s ease infinite;
+          -o-animation: gradient 7s ease infinite;
+          animation: gradient 7s ease infinite;
+       }
+    to 	{ width:0; background:transparent; }
+  }
+
+  .error {
+      color: black;
+      margin: 20px 0 0 0;
+  }

@@ -1,4 +1,4 @@
 export interface ProrumsResponse {
     ok: boolean,
-    msg?: string
+    resp?: string
 }

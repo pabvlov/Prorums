@@ -16,8 +16,8 @@ async function validateApodo(apodo){
   
 }
 
-async function createUser(mail, password, nombre, apodo, ubicacion){
-  const create = db.query(`INSERT INTO usuario (id, nombre, apodo, correo, contrasena, firma, ubicacion, foto, fecha_registro, ultima_visita, id_pais_fk) VALUES (NULL, '${ nombre }', '${ apodo }', '${ mail }', '${ password }', NULL, NULL, NULL, NOW(), NOW(), '1');`)
+async function createUser(mail, name, nickname, password){
+  const create = db.query(`INSERT INTO usuario (id, nombre, apodo, correo, contrasena, firma, ubicacion, foto, fecha_registro, ultima_visita, id_pais_fk) VALUES (NULL, '${ name }', '${ nickname }', '${ mail }', '${ password }', NULL, NULL, 'https://i.giphy.com/media/3oEduLzte7jSNmq4z6/giphy.webp', NOW(), NOW(), '1');`)
     .then(() => {
       return true;
     })

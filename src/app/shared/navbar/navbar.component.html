@@ -9,7 +9,7 @@
           Prorums
         </a>
 
-        <ng-container *ngIf="usuario.nombre != ''; then loggedIn; else notLoggedIn"></ng-container>
+        <ng-container *ngIf="usuario.id != 0; then loggedIn; else notLoggedIn"></ng-container>
 
         <ng-template #loggedIn>
           <ul class="nav justify-content-center" #loggedIn>
@@ -38,7 +38,6 @@
     </nav>
   </div>
 </section>
-
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
@@ -58,9 +57,15 @@
           <span class="bar"></span>
           <label for="password">Contraseña</label>
         </div>
-        <button type="submit" class="btn bg-animated" [disabled]="loginForm.invalid">Ingresar</button>
+        <button type="submit" class="btn bg-animated text-white" [disabled]="loginForm.invalid">Ingresar</button>
+        <br>
+        <p class="text-white text-center">¿No tienes cuenta?
+           <a type="button" class="nav-link text-white" routerLink="/register" 
+                                                        routerLinkActive="active"
+                                                        data-bs-toggle="modal" data-bs-target="#login-modal"
+                                                        >Regístrate</a>
+          </p>
       </form>
     </div>
   </div>
 </div>
-

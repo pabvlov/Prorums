@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
+import { ProrumsResponse } from '../interfaces/response.interface';
 import { Session } from '../interfaces/session.interface';
 import { User } from '../interfaces/user.interface';
 
@@ -13,7 +14,7 @@ export class UserService {
 
   private _usuario: User = {
     nombre: '',
-    id: 0
+    id: 0,
   };
  
   getList():Array<User> {
@@ -66,8 +67,8 @@ export class UserService {
       )
   }
 
-  get usuario() {
-    return { ...this._usuario }
+  get usuario(): User {
+    return { ...this._usuario } 
   }
 
   getSession(mail: string, password: string) {
@@ -89,6 +90,12 @@ export class UserService {
       )
   }
 
+  register(mail: string, name: string, nickname: string, password: string) {
+    const url = `http://localhost:3000/auth/register`
+    const body = { mail, name, nickname, password, ubicacion: '' }
+    return this.httpClient.post<ProrumsResponse>(url, body)
+  }
+
   validarToken() {
     const url = 'http://localhost:3000/auth/renew'
     const body = { token: localStorage.getItem('token') }
@@ -97,7 +104,7 @@ export class UserService {
       .pipe(
         tap( resp => {
             this._usuario = {
-              id: resp.uid!,
+              id: resp.uid || 0,
               nombre: resp.nombre!,
               foto: resp.foto!
             }

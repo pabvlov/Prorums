@@ -33,23 +33,23 @@ router.post('/auth/login', async function(req, res, next) {
 
 router.post('/auth/register', async function(req, res, next) {
 try {
-    const { mail, password, nombre, apodo, ubicacion } = req.body;
+    const { mail, name, nickname, password } = req.body;
     const rows = await auth.validateLogin(mail, password)
       let count = 0;
       for(var row in rows) count++;
       if(count === 1) {
         
-        return res.status(418).json({
+        return res.status(200).json({
             ok: false,
             resp: 'Ya existe un usuario con ese correo'
         })
-      } else if(await auth.validateApodo(apodo)) {
-        return res.status(418).json({
+      } else if(await auth.validateApodo(nickname)) {
+        return res.status(200).json({
             ok: false,
-            resp: 'Ya existe el apodo '+ apodo
+            resp: 'Ya existe el apodo '+ nickname
         })
       } else {
-        await auth.createUser(mail, password, nombre, apodo, ubicacion);
+        await auth.createUser(mail, name, nickname, password);
         return res.status(202).json({
             ok: true
         })
@@ -63,7 +63,7 @@ try {
 router.post('/auth/renew', async function(req, res, next) {
     try {
       const { token } = req.body
-      if(!token) return res.status(401).json({
+      if(!token) return res.status(200).json({
         ok: false,
         resp: 'Error en el token'
       })
@@ -77,7 +77,7 @@ router.post('/auth/renew', async function(req, res, next) {
           foto
         })
       } catch (error) {
-        return res.status(401).json({
+        return res.status(200).json({
           ok: false,
           resp: 'Token no valido'
         })

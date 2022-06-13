@@ -39,8 +39,8 @@ export class PostComponent implements OnInit {
         if(resp.ok) {
           this.router.navigateByUrl('/topics/' + this.id_foro, {skipLocationChange: true})
         } else {
-          console.log(resp.msg!)
-          this.ok = resp.msg!
+          console.log(resp.resp!)
+          this.ok = resp.resp!
         }
       })
     } else {

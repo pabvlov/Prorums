@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/interfaces/user.interface';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -17,17 +18,15 @@ export class NavbarComponent {
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
 
-  get usuario(){
+  get usuario(): User{
     return this.userService.usuario;
   }
 
   login() {
-    
     const { email, password } =  this.loginForm.value
     this.userService.getSession(email, password)
       .subscribe(resp => {
         if( resp ) {
-          console.log(resp, 'uwu')
           this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
             window.location.reload();
           });
