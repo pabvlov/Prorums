@@ -53,6 +53,9 @@ export class PostComponent implements OnInit {
     this.userService.validarToken().subscribe(
       resp => {
         this.user$ = this.userService.getById(resp.uid!)
+        if(!resp.ok) {
+          this.router.navigateByUrl('/topics/' + this.id_foro, {skipLocationChange: true})
+        }
       }
     )
   }

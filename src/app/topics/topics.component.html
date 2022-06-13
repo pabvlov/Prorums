@@ -1,5 +1,5 @@
 <div class="separator animate__animated animate__fadeIn animate__faster">
-    <div class="right">
+    <div class="right" *ngIf="usuario.id != 0">
         <a [href]="'/post/' + id_foro" class="btn bg-animated">Publicar</a>
     </div>
     <br>
@@ -13,7 +13,7 @@
         </div>
     </div>
     <br>
-    <div class="right">
+    <div class="right" *ngIf="usuario.id != 0">
         <a [href]="'/post/' + id_foro" class="btn bg-animated">Publicar</a>
     </div>
     
