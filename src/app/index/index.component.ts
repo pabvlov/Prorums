@@ -10,11 +10,11 @@ import { UserService } from '../services/user.service';
 })
 export class IndexComponent implements OnInit {
 
-  categories: Category[] = this.categoryService.getList();
+  categories: Category[] = this.categoryService.getList(); // obtengo lista de categorias
   
   constructor(private userService: UserService, private categoryService: CategoryService) {
     
-  }
+  } // importo servicios
 
   ngOnInit(): void {
   }

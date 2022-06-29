@@ -13,7 +13,7 @@ import { ForumService } from 'src/app/services/forum.service';
 export class ForumComponent implements OnInit {
   constructor(private forumService: ForumService) { 
   }
-  @Input() id_foro: string = "3";
+  @Input() id_foro: string = "3"; // input para pasar datos mediante la vista
 
   nombre: string = '';
   desc: string = '';
@@ -21,7 +21,7 @@ export class ForumComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.foro$ = this.forumService.getById(parseInt(this.id_foro));
+    this.foro$ = this.forumService.getById(parseInt(this.id_foro)); // asigno a la variable foro un foro por su id
   }
 
 }

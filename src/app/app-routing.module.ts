@@ -7,7 +7,7 @@ import { RegisterComponent } from './shared/register/register.component';
 import { TopicsComponent } from './topics/topics.component';
 import { UserComponent } from './user/user.component';
 
-const routes: Routes = [
+const routes: Routes = [ // redirecciones / rutas url
   {
     path: '',
     component: IndexComponent,

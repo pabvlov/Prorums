@@ -11,7 +11,7 @@ export class CategoryService {
  
   getList(): Category[] {
     let categories: Category[] = [];
-    let lista = this.httpClient.get('http://localhost:3000/categories');
+    let lista = this.httpClient.get('http://localhost:3000/categories'); // llama al backend para obtener categorias
 
     lista.subscribe((resp: any) => {
       for (let index = 0; index < resp.length; index++) {
@@ -20,11 +20,11 @@ export class CategoryService {
           name:               resp[index].nombre,
           description:        resp[index].descripcion,
           position:           resp[index].posicion
-        };
-        categories.push(category);
+        }; // mapeo del objeto categoria
+        categories.push(category); // agrego objeto a la lista de categorias
       }
     });
-    return categories;
+    return categories; // retorno lista de categorias
   }
 
 }

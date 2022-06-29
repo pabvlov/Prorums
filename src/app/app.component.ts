@@ -1,6 +1,6 @@
 import { Component, ElementRef, HostBinding, HostListener, OnInit, Pipe, ViewChild } from '@angular/core';
 import { ToggleDirective } from './toggle.directive';
-
+// dark theme fallido por falta de tiempo
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

@@ -14,15 +14,15 @@ import { TopicService } from 'src/app/services/topic.service';
 })
 export class CategoryComponent {
 
-  categories: Category[] = this.categoryService.getList();
+  categories: Category[] = this.categoryService.getList(); // obtengo lista de categorias
   forums$!: Observable<Forum[]>;
   temas$!: Observable<Topic[]>;
   
   constructor(private categoryService: CategoryService,
                private forumService: ForumService,
-               private topicService: TopicService) {
-    this.temas$ = this.topicService.getAll()
-    this.forums$ = this.forumService.getList();
+               private topicService: TopicService) { // importo servicios
+    this.temas$ = this.topicService.getAll() // obtengo todos los temas
+    this.forums$ = this.forumService.getList(); // obtengo todos los foros
   }
 
 }

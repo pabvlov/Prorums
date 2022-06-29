@@ -17,6 +17,6 @@ export class ShorttopicsComponent {
               }
   tema$!: Observable<Topics>;
   ngOnInit(): void {
-    this.tema$ = this.topicService.getById(parseInt(this.id_tema));
+    this.tema$ = this.topicService.getById(parseInt(this.id_tema)); // obtengo temas por id
   }
 }

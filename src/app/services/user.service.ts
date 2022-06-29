@@ -10,12 +10,12 @@ import { User } from '../interfaces/user.interface';
 })
 export class UserService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { } // importacion de servicios
 
   private _usuario: User = {
     nombre: '',
     id: 0,
-  };
+  }; // objeto usuario para uso exclusivo de este .ts
  
   getList():Array<User> {
     let users: User[] = [];
@@ -35,19 +35,19 @@ export class UserService {
           fecha_registro:  resp[index].fecha_registro,
           ultima_visita:         resp[index].ultima_visita,
           pais:             resp[index].pais,
-        };
-        users.push(user);
+        }; // mapeo usuario
+        users.push(user); // paso usuario a la lista de usuarios
       }
     });
-    return users;
+    return users; // retorno usuarios
   }
 
   getById(id: number): Observable<User> {
     return this.httpClient.get<User[]>('http://localhost:3000/user/' + id)
-    .pipe(map((response: User[]) => response[0]));
+    .pipe(map((response: User[]) => response[0])); // mapeo automatico de lista de usuarios
   }
 
-  getByIdNotObserver(id: number) {
+  getByIdNotObserver(id: number) { // mapeo de usuario por id no observable
     return this.httpClient.get<User>('http://localhost:3000/user/' + id)
       .pipe(
         map( resp => {
@@ -68,22 +68,22 @@ export class UserService {
   }
 
   get usuario(): User {
-    return { ...this._usuario } 
+    return { ...this._usuario } // getter usuario de userService
   }
 
-  getSession(mail: string, password: string) {
+  getSession(mail: string, password: string) { // loguear al usuario
     const url = `http://localhost:3000/auth/login`
     const body = { mail, password }
     return this.httpClient.post<Session>(url, body)
       .pipe(
         tap( resp => {
           if( resp.ok ) {
-            localStorage.setItem('token', resp.token!)
+            localStorage.setItem('token', resp.token!) // guardamos el jwt en localstorage
             this._usuario = {
               id: resp.uid!,
               nombre: resp.nombre!,
               foto: resp.foto!
-            }
+            } // le asignamos al usuario la response
           }
         } ),
         map( resp => resp.ok )
@@ -93,14 +93,14 @@ export class UserService {
   register(mail: string, name: string, nickname: string, password: string) {
     const url = `http://localhost:3000/auth/register`
     const body = { mail, name, nickname, password, ubicacion: '' }
-    return this.httpClient.post<ProrumsResponse>(url, body)
+    return this.httpClient.post<ProrumsResponse>(url, body) // registramos al usuario via post, devuelve una response
   }
 
-  validarToken() {
+  validarToken() { // revisamos token jwt del localstorage y verificamos que este logueado o no.
     const url = 'http://localhost:3000/auth/renew'
     const body = { token: localStorage.getItem('token') }
 
-    return this.httpClient.post<Session>(url, body)
+    return this.httpClient.post<Session>(url, body) 
       .pipe(
         tap( resp => {
             this._usuario = {

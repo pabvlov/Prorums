@@ -16,12 +16,12 @@ export class PostComponent implements OnInit {
               private fb: FormBuilder, 
               private route: ActivatedRoute,
               private topicService: TopicService,
-              private router: Router) {}
+              private router: Router) {} // importo servicios y routeservice
   user$!: Observable<User>;
   fecha_actual = new Date()
-  id_foro = this.route.snapshot.params["id"];
+  id_foro = this.route.snapshot.params["id"]; // obtengo el id desde la url
   get usuario(){
-    return this.userService.usuario;
+    return this.userService.usuario; // getter de usuario de userService
   }
 
   ok = ''
@@ -30,11 +30,11 @@ export class PostComponent implements OnInit {
     titulo:  [ '', [ Validators.required] ],
     categoria:  [ '', [ Validators.required, Validators.maxLength(24)] ],
     cuerpo: [ '', [ Validators.required] ]
-  })
+  }) // form controller
   
-  post() {
-    const { titulo, categoria, cuerpo } = this.topicForm.value;
-    if(this.topicForm.valid) {
+  post() { // se acciona al presionar el boton de publicar
+    const { titulo, categoria, cuerpo } = this.topicForm.value; // object destructuring del form controller
+    if(this.topicForm.valid) { // si es valido:
       this.topicService.postTopic(this.id_foro, titulo, categoria, cuerpo, this.id_foro, this.usuario.id!).subscribe( resp => {
         if(resp.ok) {
           this.router.navigateByUrl('/topics/' + this.id_foro, {skipLocationChange: true})
@@ -43,7 +43,7 @@ export class PostComponent implements OnInit {
           this.ok = resp.resp!
         }
       })
-    } else {
+    } else { // si no es valido:
       this.ok = 'Envío de formulario no válido, es posible que un campo este vacío.'
     }
   }
@@ -53,7 +53,7 @@ export class PostComponent implements OnInit {
     this.userService.validarToken().subscribe(
       resp => {
         this.user$ = this.userService.getById(resp.uid!)
-        if(!resp.ok) {
+        if(!resp.ok) { // si el usuario no esta logueado, que lo devuelva a la pagina de listado de topicos, ya que los usuarios no logueados no pueden publicar
           this.router.navigateByUrl('/topics/' + this.id_foro, {skipLocationChange: true})
         }
       }

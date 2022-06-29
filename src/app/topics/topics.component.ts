@@ -23,8 +23,8 @@ export class TopicsComponent implements OnInit {
   get usuario() {
     return this.userService.usuario;
   }
-  foro$: Observable<Forum> = this.forumService.getById(this.id_foro);
-  temas$: Observable<Topics[]> = this.topicService.getTopics(this.id_foro);
+  foro$: Observable<Forum> = this.forumService.getById(this.id_foro); // obtengo foro por id
+  temas$: Observable<Topics[]> = this.topicService.getTopics(this.id_foro); // obtengo temas por foro
 
   ngOnInit(): void {
     
