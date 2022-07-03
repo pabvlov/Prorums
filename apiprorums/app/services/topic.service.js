@@ -40,10 +40,25 @@ async function post(titulo, categoria, cuerpo, id_foro, id_usuario) {
   return db.query(`INSERT INTO tema (id, titulo, cuerpo, borrado, fecha, tipo, id_foro_fk, id_usuario_fk) VALUES (NULL, '${ titulo }', '${ cuerpo }', 0, NOW(), '${ categoria }', ${ id_foro }, ${ id_usuario });`)
 }
 
+async function editar(id, titulo, categoria, cuerpo) {
+  return db.query(`UPDATE tema set titulo = '${ titulo }', cuerpo = '${ cuerpo }', tipo = '${ categoria }' WHERE id = ${id}`)
+}
+
+async function hide(id) {
+  return db.query(`UPDATE tema set borrado = 1 WHERE id = ${id}`)
+}
+
+async function show(id) {
+  return db.query(`UPDATE tema set borrado = 0 WHERE id = ${id}`)
+}
+
 module.exports = {
   getMultiple,
   getByForum,
   getById,
   getByUser,
-  post
+  post,
+  editar,
+  hide,
+  show
 }

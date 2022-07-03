@@ -2,7 +2,7 @@
   "name": "apiprorums",
   "version": "1.0.0",
   "description": "Node.js Api Rest con Express, Sequelize y MySQL para Prorums",
-  "main": " server.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

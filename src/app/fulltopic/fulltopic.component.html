@@ -30,5 +30,46 @@
         
     </div>
 </div>
-<ng-template ngIf="usuario.id == (topic$ | async)?.id_usuario_fk"><button class="btn bg-animated">Borrar tema</button></ng-template>
+<div class="botones">
+    <ng-template ngIf="usuario.id == (topic$ | async)?.id_usuario_fk"><button class="btn bg-animated">Borrar tema</button></ng-template>
+</div>
+
+<br><br>
+<div *ngIf="usuario.id != 0">
+    Responder:
+    <div class="col col-lg-12 col-sm-12 mb-4 mb-lg-0">
+        <form [formGroup]="postThread" (submit)="post()">
+            <figure class="bg-white p-3 rounded shadow" style="border-left: .25rem solid #CC0000;">
+                <blockquote class="blockquote pb-2">
+                  <p>
+                      <input type="text" placeholder="Escribe lo que piensas aquí" class="form-control" formControlName="cuerpo">
+                  </p>
+                </blockquote>
+                <figcaption class="blockquote-footer mb-0 font-italic">
+                      {{ usuario.nombre }}
+                </figcaption>
+              </figure>
+        </form>
+    </div>
+</div>
+
+<div *ngFor="let hilo of (threads$ | async)" class="resp">
+        <div class="container">
+            <div class="row">
+                <div class="col col-lg-12 col-sm-12 mb-4 mb-lg-0">
+                    <figure class="bg-white p-3 rounded shadow" style="border-left: .25rem solid #CC0000;">
+                      <blockquote class="blockquote pb-2">
+                        <p>
+                            {{ hilo.cuerpo }}
+                        </p>
+                      </blockquote>
+                      <figcaption class="blockquote-footer mb-0 font-italic">
+                            {{ hilo.usuario }} - {{ hilo.fecha | date:'medium' }}
+                      </figcaption>
+                    </figure>
+                </div>
+            </div>
+    </div>
+</div>
+
 

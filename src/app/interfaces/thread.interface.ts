@@ -1,7 +1,9 @@
-import { Topic } from "./topic.interface";
-
 export interface Thread {
-    id: number,
-    id_topic: Topic,
-    body: string
+    id:            number;
+    cuerpo:        string;
+    fecha:         Date;
+    id_tema_fk:    number;
+    id_usuario_fk: number;
+    usuario:       string;
+    tema:          string;
 }

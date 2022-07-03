@@ -13,7 +13,7 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./topics.component.css']
 })
 export class TopicsComponent implements OnInit {
-  id_foro: number = this.route.snapshot.params["id"];;
+  id_foro: number = this.route.snapshot.params["id"];
   constructor(private topicService: TopicService, 
               private route: ActivatedRoute, 
               private forumService: ForumService,

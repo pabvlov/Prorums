@@ -28,3 +28,12 @@ pre {
     white-space: normal !important;
     word-break: break-word;
 }
+
+.resp {
+    margin-left: 10%;
+}
+
+.botones {
+    display: flex;
+    justify-content: space-between;
+}
