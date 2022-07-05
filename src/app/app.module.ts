@@ -13,6 +13,8 @@ import { FulltopicModule } from './fulltopic/fulltopic.module';
 import { UserModule } from './user/user.module';
 import { PostComponent } from './post/post.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     PostComponent,
   ],
   imports: [
+    MatGridListModule,
     BrowserModule,
     AppRoutingModule,
     SharedModule,
@@ -30,7 +33,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FulltopicModule,
     UserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [DatePipe],
   exports: [DatePipe],

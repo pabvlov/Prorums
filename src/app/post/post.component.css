@@ -174,3 +174,71 @@ code {
   justify-content: flex-end;
   right: 0;
 }
+
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+@media (max-width: 500px) {
+  .info {
+    flex-direction: column;
+  }
+}
+
+h5 {
+  padding: 10px;
+}
+
+.foto {
+  height: 100px !important;
+  text-align: center;
+}
+
+img {
+  height: 100%;
+}
+
+pre {
+  color: black;
+  font-size: large;
+  white-space: normal !important;
+  word-break: break-word;
+}
+
+.resp {
+  margin-left: 10%;
+}
+
+.botones {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.body {
+  background-color: rgb(235, 235, 235);
+  border-radius: 10px;
+}
+
+.card {
+  margin: 20px;
+}
+
+.float {
+  position: absolute;
+  z-index: 100;
+  transform: rotateZ(-35deg);
+  background-color: #cc0000;
+  padding: 10px 10px;
+  border-radius: 10px;
+}
+
+.float h5 {
+  margin: 0;
+  padding: 0;
+}

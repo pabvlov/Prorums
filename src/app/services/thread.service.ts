@@ -15,9 +15,9 @@ export class ThreadService {
     return this.httpClient.get<Thread[]>(`http://localhost:3000/threads/${id}`)
   } // mapeo automatico mediante fetch
 
-  postTopic(foro: number, titulo: string, categoria: string, cuerpo: string, id_foro: number, id_usuario: number) {
-    const url = 'http://localhost:3000/post/';
-    const body = { foro, titulo, categoria, cuerpo, id_foro, id_usuario } // objeto body conformado por los entry paramenters
+  postTopic(cuerpo: string, id_usuario: number, id_tema: number) {
+    const url = 'http://localhost:3000/post/thread';
+    const body = { cuerpo, id_usuario, id_tema } // objeto body conformado por los entry paramenters
     return this.httpClient.post<ProrumsResponse>(url, body) // respuesta ok y msg que devuelve el post al ejecutarse
   } // todo: cambiar
 }

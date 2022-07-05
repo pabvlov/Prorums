@@ -36,7 +36,7 @@
 
 <h3>Vista previa:</h3>
 
-<br>
+<!-- <br>
 
 <div class="content animate__animated animate__fadeIn animate__faster">
     <h1>{{ this.topicForm.controls['titulo'].value }}</h1>
@@ -73,5 +73,42 @@
         </div>
         
         
+    </div>
+</div> -->
+
+
+<br>
+<div class="content animate__animated animate__fadeIn animate__faster">
+    <div class="body">
+        <div class="float">
+            <h5>{{ this.topicForm.controls['categoria'].value }}</h5>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-sm-12">
+                <div class="card border-gradient">
+                    <div class="card-body text-center">
+                      <h5 class="card-title text-center"><a [href]="'/user/' + (user$ | async)?.id" class="btn bg-animated btn-sm">{{ (user$ | async)?.apodo }}</a></h5>
+                      <div class="foto">
+                        <img [src]="(user$ | async)?.foto" class="img-fluid">
+                      </div>
+                      <br>
+                      <h6>{{ (user$ | async)?.nombre }}</h6>
+                      <br>
+                      Última Conexión: 
+                      <p class="text-center">{{ (user$ | async)?.ultima_visita | date:'medium' }}</p>
+                      <p class="text-center">{{ (user$ | async)?.pais }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-sm-12">
+                <div class="title">
+                    <h1>{{ this.topicForm.controls['titulo'].value }}</h1>
+                </div>
+                <code>{{ this.topicForm.controls['cuerpo'].value }}</code>
+                <figcaption class="blockquote-footer mt-1 font-italic">
+                    {{ fecha_actual | date:'fullDate' }}
+                </figcaption>
+            </div>
+        </div>
     </div>
 </div>

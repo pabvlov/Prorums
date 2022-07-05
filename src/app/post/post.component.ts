@@ -28,7 +28,7 @@ export class PostComponent implements OnInit {
 
   topicForm: FormGroup = this.fb.group({
     titulo:  [ '', [ Validators.required] ],
-    categoria:  [ '', [ Validators.required, Validators.maxLength(24)] ],
+    categoria:  [ '', [ Validators.required, Validators.maxLength(20)] ],
     cuerpo: [ '', [ Validators.required] ]
   }) // form controller
   
@@ -44,7 +44,7 @@ export class PostComponent implements OnInit {
         }
       })
     } else { // si no es valido:
-      this.ok = 'Envío de formulario no válido, es posible que un campo este vacío.'
+      this.ok = 'Envío de formulario no válido, la categoría debe tener máximo 20 caracteres, el título y el cuerpo no deben estar vacíos.'
     }
   }
 

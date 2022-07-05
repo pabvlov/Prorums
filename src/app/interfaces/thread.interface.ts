@@ -6,4 +6,5 @@ export interface Thread {
     id_usuario_fk: number;
     usuario:       string;
     tema:          string;
+    foto:          string;
 }

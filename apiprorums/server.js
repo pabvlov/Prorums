@@ -9,6 +9,7 @@ const forumsRouter = require("./app/routes/forum.routes");
 const topicsRouter = require("./app/routes/topic.routes");
 const threadRouter = require("./app/routes/thread.routes");
 const authRouter = require("./app/routes/auth.routes");
+const reactionRouter = require("./app/routes/reaction.routes");
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -20,6 +21,7 @@ app.use(
 app.get("/", (req, res) => {
   res.json({ message: "ok" });
 });
+/* routes */
 // users
 app.get("/users", usersRouter);
 app.get("/user/:id", usersRouter);
@@ -48,6 +50,13 @@ app.post("/post/thread", threadRouter);
 app.post("/auth/login", authRouter);
 app.post("/auth/register", authRouter);
 app.post("/auth/renew", authRouter);
+// reactions
+app.get("/reactions", reactionRouter);
+app.get("/reaction/:id", reactionRouter);
+app.get("/topic/reactions/:id", reactionRouter);
+app.post("/add/reaction", reactionRouter);
+app.post("/topic/add/reaction", reactionRouter);
+app.post("/topic/add/reaction", reactionRouter);
 
 
 /* Error handler middleware */

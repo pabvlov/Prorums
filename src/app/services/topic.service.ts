@@ -31,7 +31,8 @@ export class TopicService {
           foto:     resp[i].foto,
           id_usuario_fk: resp[i].id_usuario_fk,
           escritor: resp[i].escritor,
-          apodo_escritor: resp[i].apodo_escritor
+          apodo_escritor: resp[i].apodo_escritor,
+          borrado: resp[i].borrado
         } // mapeo los temas         
         topics.push(topic);  // los paso a la lista
       } 
@@ -57,5 +58,13 @@ export class TopicService {
     const url = 'http://localhost:3000/post/';
     const body = { foro, titulo, categoria, cuerpo, id_foro, id_usuario } // objeto body conformado por los entry paramenters
     return this.httpClient.post<ProrumsResponse>(url, body) // respuesta ok y msg que devuelve el post al ejecutarse
+  }
+
+  borrar(id: number) {
+    return this.httpClient.post<ProrumsResponse>(`http://localhost:3000/post/hide`, { id });
+  }
+
+  mostrar(id: number) {
+    return this.httpClient.post<ProrumsResponse>(`http://localhost:3000/post/show`, { id });
   }
 }

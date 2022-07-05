@@ -37,3 +37,49 @@ pre {
     display: flex;
     justify-content: space-between;
 }
+
+.title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.body {
+    background-color: rgb(235, 235, 235);
+    border-radius: 10px;
+}
+
+.card {
+    margin: 20px;
+}
+
+code {
+    color: black;
+    font-size: large;
+    white-space: pre-wrap !important;
+    word-break: break-word;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.perfil {
+    border-radius: 50%;
+    max-width: 60px;
+    max-height: 60px;
+}
+
+.float {
+    position: absolute;
+    z-index: 100;
+    transform: rotateZ(-35deg);
+    background-color: #cc0000;
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+.float h5 {
+    margin: 0;
+    padding: 0;
+}
+
+mat-form-field {
+    flex-wrap: nowrap !important;
+}

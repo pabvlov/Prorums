@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { ForumComponent } from './forum/forum.component';
 import { HttpClientModule } from '@angular/common/http';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 
@@ -16,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     ForumComponent,
   ],
   imports: [
+    MatGridListModule,
     CommonModule,
     SharedModule,
     RouterModule,

@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map, Observable, startWith } from 'rxjs';
 import { Thread } from '../interfaces/thread.interface';
 import { Topic, Topics } from '../interfaces/topic.interface';
 import { ThreadService } from '../services/thread.service';
 import { TopicService } from '../services/topic.service';
 import { UserService } from '../services/user.service';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-fulltopic',
@@ -19,7 +22,13 @@ export class FulltopicComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private threadService: ThreadService,
-    private fb: FormBuilder) { } // importo servicios y routeservice
+    private fb: FormBuilder) {
+      this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+        startWith(null),
+        map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice())),
+      );
+    } // importo servicios y routeservice
+
   get usuario () {
     return this.userService.usuario;
   }
@@ -33,7 +42,19 @@ export class FulltopicComponent implements OnInit {
   threads$: Observable<Thread[]> = this.threadService.getByForum(parseInt(this.id_tema)); // llamo a obtener mediante id del servicio de temas
 
   post() {
-    console.log("accedi");
+    const { cuerpo } = this.postThread.value;
+    const body = { cuerpo }
+    this.threadService.postTopic(cuerpo, this.usuario.id!, this.id_tema)
+      .subscribe( resp => {
+        if(resp.ok) window.location.reload();
+      } );
+  }
+  borrar() {
+    this.topicService.borrar(this.id_tema).subscribe( resp => { if(resp.ok) window.location.reload(); });
+  }
+
+  mostraruwu() {
+    this.topicService.mostrar(this.id_tema).subscribe( resp => { if(resp.ok) window.location.reload(); });
   }
 
   ngOnInit(): void {
@@ -41,4 +62,56 @@ export class FulltopicComponent implements OnInit {
     
   }
 
+
+
+  //material
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  fruitCtrl = new FormControl('');
+  filteredFruits: Observable<string[]>;
+  reacciones: string[] = ['😂'];
+  allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+
+  @ViewChild('fruitInput')
+  fruitInput!: ElementRef<HTMLInputElement>;
+
+
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    // Add our fruit
+    if (value) {
+      this.reacciones.push(value);
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+
+    this.fruitCtrl.setValue(null);
+  }
+
+  remove(fruit: string): void {
+    const index = this.reacciones.indexOf(fruit);
+
+    if (index >= 0) {
+      this.reacciones.splice(index, 1);
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.reacciones.push(event.option.viewValue);
+    this.fruitInput.nativeElement.value = '';
+    this.fruitCtrl.setValue(null);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allFruits.filter(fruit => fruit.toLowerCase().includes(filterValue));
+  }
+
+}
+
+// wtf
+export interface Fruit {
+  name: string;
 }

@@ -11,7 +11,7 @@
  Target Server Version : 100424
  File Encoding         : 65001
 
- Date: 03/05/2022 10:41:11
+ Date: 04/07/2022 12:20:45
 */
 
 SET NAMES utf8mb4;
@@ -84,6 +84,7 @@ CREATE TABLE `foro`  (
   `foto` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `posicion` int NULL DEFAULT NULL,
   `id_categoria_fk` int NOT NULL,
+  `activo` bit(1) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `id_category_forum`(`id_categoria_fk`) USING BTREE,
   CONSTRAINT `id_category_forum` FOREIGN KEY (`id_categoria_fk`) REFERENCES `categoria` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
@@ -92,9 +93,9 @@ CREATE TABLE `foro`  (
 -- ----------------------------
 -- Records of foro
 -- ----------------------------
-INSERT INTO `foro` VALUES (3, 'Reglas de Prorums', 'El mejor foro del mundo', 'https://media1.giphy.com/media/l0HU20BZ6LbSEITza/giphy.gif?cid=790b761137c3d8544ccd2309222f972e29594a524a3af605&rid=giphy.gif&ct=g', 1, 1);
-INSERT INTO `foro` VALUES (4, 'Zona Fumadores', 'xd', 'https://i.giphy.com/media/l3q2zxUCPX4rmO8ZG/giphy.webp', 1, 2);
-INSERT INTO `foro` VALUES (5, 'Peleas Internas', 'Foro para expresar tus xd', 'https://i.giphy.com/media/lueaDWxOz0LNS/200w.webp', 3, 2);
+INSERT INTO `foro` VALUES (3, 'Reglas de Prorums', 'descripcion', 'https://i.giphy.com/media/lueaDWxOz0LNS/200w.webp', 1, 1, NULL);
+INSERT INTO `foro` VALUES (4, 'Zona Fumadores', 'xd', 'https://i.giphy.com/media/l3q2zxUCPX4rmO8ZG/giphy.webp', 1, 2, NULL);
+INSERT INTO `foro` VALUES (5, 'Peleas Internas', 'Foro para expresar tus xd', 'https://i.giphy.com/media/lueaDWxOz0LNS/200w.webp', 3, 2, NULL);
 
 -- ----------------------------
 -- Table structure for hilo
@@ -111,11 +112,23 @@ CREATE TABLE `hilo`  (
   INDEX `id_topic_thread`(`id_tema_fk`) USING BTREE,
   CONSTRAINT `id_topic_thread` FOREIGN KEY (`id_tema_fk`) REFERENCES `tema` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `id_user_thread` FOREIGN KEY (`id_usuario_fk`) REFERENCES `usuario` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of hilo
 -- ----------------------------
+INSERT INTO `hilo` VALUES (1, 'yo creo que si', '2022-07-02 20:59:45', 10, 4);
+INSERT INTO `hilo` VALUES (2, 'yo creo que maomeno', '2022-07-02 21:28:20', 10, 4);
+INSERT INTO `hilo` VALUES (3, 'hola?', '2022-07-03 12:58:02', 10, 29);
+INSERT INTO `hilo` VALUES (4, 'como estas', '2022-07-03 12:59:08', 10, 29);
+INSERT INTO `hilo` VALUES (5, 'one two three and to the four', '2022-07-03 13:07:34', 10, 28);
+INSERT INTO `hilo` VALUES (6, 'que es esto', '2022-07-03 13:35:55', 11, 4);
+INSERT INTO `hilo` VALUES (7, 'luego las sacamos y le echamos sal y ketchup', '2022-07-03 13:56:08', 10, 3);
+INSERT INTO `hilo` VALUES (8, 'ya pero que no se puede fumar', '2022-07-03 14:45:58', 10, 6);
+INSERT INTO `hilo` VALUES (9, 'cigarro po wn que mas', '2022-07-03 14:46:59', 12, 6);
+INSERT INTO `hilo` VALUES (10, 'pero puede ser marimba', '2022-07-03 17:03:26', 11, 6);
+INSERT INTO `hilo` VALUES (11, 'quiero una cuanto es', '2022-07-03 21:53:53', 10, 5);
+INSERT INTO `hilo` VALUES (12, 'hola po compare', '2022-07-04 12:17:53', 10, 26);
 
 -- ----------------------------
 -- Table structure for hilo_tiene_reacciones
@@ -220,7 +233,7 @@ CREATE TABLE `tema`  (
   INDEX `id_user_topic`(`id_usuario_fk`) USING BTREE,
   CONSTRAINT `id_forum_topic` FOREIGN KEY (`id_foro_fk`) REFERENCES `foro` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `id_user_topic` FOREIGN KEY (`id_usuario_fk`) REFERENCES `usuario` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 30 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tema
@@ -228,9 +241,15 @@ CREATE TABLE `tema`  (
 INSERT INTO `tema` VALUES (1, 'Como hacer un foro', 'este es un tutorial de como hacer un foro', 0, '2022-04-26 22:50:31', 'Tutorial', 3, 10);
 INSERT INTO `tema` VALUES (2, 'Como hacer un consome', 'este es un tutorial de como hacer un consome', 0, '2022-04-26 22:50:31', 'Tutorial', 4, 11);
 INSERT INTO `tema` VALUES (3, 'Como hacer papas fritas', 'Con aceite', 0, '2022-04-30 16:58:08', 'Tutorial', 3, 10);
-INSERT INTO `tema` VALUES (4, 'Pelea Profe Sergio vs Sra. Lidia', 'En este brawl veremos como se pelean jhaja', 0, '2022-05-03 10:17:55', 'Peleas', 5, 11);
+INSERT INTO `tema` VALUES (4, 'Pelea Profe Sergio vs Sra. Lidia', '\nLorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum repellat corrupti ipsum rem distinctio! Distinctio voluptas nobis suscipit! Suscipit atque at velit! Consectetur atque dolores dicta doloribus. Consectetur unde consequuntur, quaerat repellendus autem aliquam voluptatum quo quisquam neque earum enim praesentium, iure, ab quam cum voluptatibus molestias non soluta tempore harum! Commodi tempore quibusdam consectetur, praesentium repellendus quia aliquid est, reprehenderit aperiam excepturi dicta accusamus architecto accusantium, doloremque molestiae enim nulla similique eos nostrum. Sapiente inventore facere modi odio possimus laboriosam itaque labore provident enim est voluptatibus ipsam dolore mollitia, tenetur deserunt fuga repudiandae deleniti reiciendis eos quasi sint quia!\n\\n\nEs por esto que yo creo que sería empate', 0, '2022-05-03 10:17:55', 'Peleas', 5, 11);
 INSERT INTO `tema` VALUES (5, 'Venta de Chaparritas afuera', 'que opinan de q vendan cosas afuera de la u', 0, '2022-05-03 10:33:44', 'Pregunta', 5, 12);
 INSERT INTO `tema` VALUES (6, 'No se puede ni fumar en la u', 'toy fome quiero fumar angustiao', 0, '2022-05-03 10:33:44', 'Discusión', 4, 10);
+INSERT INTO `tema` VALUES (23, 'titulito', 'cuerpo xd\nxd', 0, '2022-06-05 23:17:06', 'categoria nueva', 3, 10);
+INSERT INTO `tema` VALUES (25, 'wena cabros no soy el vicente', 'hoy se bebe hoy se gasta\nabc', 0, '2022-06-06 00:11:47', 'uwu', 4, 12);
+INSERT INTO `tema` VALUES (26, 'oscar', 'hola como estan los cabros', 0, '2022-06-16 17:38:54', 'david', 4, 10);
+INSERT INTO `tema` VALUES (27, 'claramente las reglas del foro', 'no fumar\nno tomar\nno estudiar', 0, '2022-06-29 17:12:24', 'reglas', 3, 10);
+INSERT INTO `tema` VALUES (28, 'holi1', '1234', 0, '2022-07-01 12:59:44', 'undefined', 3, 10);
+INSERT INTO `tema` VALUES (29, 'asfasgasfas', 'asdagdfhgasdf', 1, '2022-07-03 00:48:29', 'asdasfasdf', 3, 10);
 
 -- ----------------------------
 -- Table structure for tema_tiene_reacciones
@@ -273,7 +292,7 @@ CREATE TABLE `usuario`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `id_country_user_fk`(`id_pais_fk`) USING BTREE,
   CONSTRAINT `id_country_user_fk` FOREIGN KEY (`id_pais_fk`) REFERENCES `pais` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 43 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of usuario
@@ -281,6 +300,16 @@ CREATE TABLE `usuario`  (
 INSERT INTO `usuario` VALUES (10, 'Pablo Prieto', 'pabvlov', 'pablojavierprietocepeda@gmail.com', '123', 'uwu', 'killpue', 'https://i.giphy.com/media/3o6gaUIP3L0eLVJNPq/200w.webp', '2022-03-20 19:13:06', '2022-03-20 19:13:06', 1);
 INSERT INTO `usuario` VALUES (11, 'Daniel Avila', 'amurpo', 'danielavila@gmail.com', '123', 'uwu', 'killpue', 'https://i.giphy.com/media/5dQQUpPjaZQeQ/giphy.webp\r\n', '2022-03-20 19:13:06', '2022-03-20 19:13:06', 1);
 INSERT INTO `usuario` VALUES (12, 'Vicente Goldberg', 'vgoldberg', 'vicente.goldberg@prorums.cl', '123', 'Da best', 'INACAP', 'https://i.giphy.com/media/3oFzmf3PiIfy6J15ss/200.webp', '2022-05-03 10:31:18', '2022-05-03 10:31:18', 1);
+INSERT INTO `usuario` VALUES (33, 'undefined', 'undefined', 'pablojavierprietocepeda2@gmail.com', '123', NULL, NULL, NULL, '2022-06-12 18:56:01', '2022-06-12 18:56:01', 1);
+INSERT INTO `usuario` VALUES (34, 'pavlo el trucho', 'prueba3', 'pablojavierprietocepeda3@gmail.com', '123', NULL, NULL, NULL, '2022-06-12 19:02:44', '2022-06-12 19:02:44', 1);
+INSERT INTO `usuario` VALUES (35, 'Jamon', 'unk', 'pablojavierprietocepeda4@gmail.com', '123', NULL, NULL, 'https://i.giphy.com/media/3oEduLzte7jSNmq4z6/giphy.webp', '2022-06-12 19:10:35', '2022-06-12 19:10:35', 1);
+INSERT INTO `usuario` VALUES (36, 'rsfhs', 'asdg', 'pablojavierprietocepeda7@gmail.com', '123', NULL, NULL, 'https://i.giphy.com/media/3oEduLzte7jSNmq4z6/giphy.webp', '2022-06-13 00:10:49', '2022-06-13 00:10:49', 1);
+INSERT INTO `usuario` VALUES (37, '14rtgsf', 'asgadg', 'pablojavierprietocepeda8@gmail.com', '123', NULL, NULL, 'https://i.giphy.com/media/3oEduLzte7jSNmq4z6/giphy.webp', '2022-06-13 00:30:11', '2022-06-13 00:30:11', 1);
+INSERT INTO `usuario` VALUES (38, 'sdfdn', 'fgerfhj', 'pablojavierprietocepeda9@gmail.com', '123', NULL, NULL, 'https://i.giphy.com/media/3oEduLzte7jSNmq4z6/giphy.webp', '2022-06-13 00:30:42', '2022-06-13 00:30:42', 1);
+INSERT INTO `usuario` VALUES (39, 'jolape', 'rra', 'pablojavierprietocepeda10@gmail.com', '123', NULL, NULL, 'https://i.giphy.com/media/3oEduLzte7jSNmq4z6/giphy.webp', '2022-06-13 18:28:17', '2022-06-13 18:28:17', 1);
+INSERT INTO `usuario` VALUES (40, '13543', 'bob', 'pablojavierprietocepeda12@gmail.com', '123', NULL, NULL, 'https://i.giphy.com/media/3oEduLzte7jSNmq4z6/giphy.webp', '2022-06-13 18:30:20', '2022-06-13 18:30:20', 1);
+INSERT INTO `usuario` VALUES (41, '1255', 'la roca', 'pablojavierprietocepeda0@gmail.com', '123', NULL, NULL, 'https://i.giphy.com/media/3oEduLzte7jSNmq4z6/giphy.webp', '2022-06-13 18:31:01', '2022-06-13 18:31:01', 1);
+INSERT INTO `usuario` VALUES (42, 't57', 'lol', 'pablojavierprietocepeda-1@gmail.com', '123', NULL, NULL, 'https://i.giphy.com/media/3oEduLzte7jSNmq4z6/giphy.webp', '2022-06-13 18:33:14', '2022-06-13 18:33:14', 1);
 
 -- ----------------------------
 -- Table structure for usuario_tiene_roles

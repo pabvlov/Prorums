@@ -12,6 +12,7 @@ export interface Topics {
     id_usuario_fk:    string;
     escritor:         string;
     apodo_escritor:   string;
+    borrado:          number;
 }
 
 export interface Topic {
@@ -30,4 +31,5 @@ export interface Topic {
     categoria:      string;
     pais:           string;
     ultima_visita:  string;
+    borrado:          number;
 }

@@ -1,17 +1,11 @@
 <br>
 <div class="content animate__animated animate__fadeIn animate__faster">
-    <h1>{{ (topic$ | async)?.titulo }}</h1>
-    <div class="info">
-        <h5>Por: {{ (topic$ | async)?.escritor }}<br>[ {{ (topic$ | async)?.apodo_escritor}} ]</h5>
-        <h5>Tipo: <button class="btn bg-animated btn-sm">{{ (topic$ | async)?.tipo }}</button></h5>
-        <h5>Fecha: <button class="btn bg-animated btn-sm">{{ (topic$ | async)?.fecha | date:'medium' }}</button></h5>
-    </div>
     <div class="body">
+        <div class="float">
+            <h5>{{ (topic$ | async)?.tipo }}</h5>
+        </div>
         <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-12">
-                <pre>{{ (topic$ | async)?.cuerpo }}</pre>
-            </div>
-            <div class="col-lg-4 col-md-8 col-sm-12">
+            <div class="col-lg-4 col-sm-12">
                 <div class="card border-gradient">
                     <div class="card-body text-center">
                       <h5 class="card-title text-center"><a [href]="'/user/' + (topic$ | async)?.id_usuario_fk" class="btn bg-animated btn-sm">{{ (topic$ | async)?.apodo_escritor }}</a></h5>
@@ -19,20 +13,59 @@
                         <img [src]="(topic$ | async)?.foto" class="img-fluid">
                       </div>
                       <br>
+                      <h6>{{ (topic$ | async)?.escritor }}</h6>
+                      <br>
                       Última Conexión: 
                       <p class="text-center">{{ (topic$ | async)?.ultima_visita | date:'medium' }}</p>
                       <p class="text-center">{{ (topic$ | async)?.pais }}</p>
                     </div>
                 </div>
             </div>
+            <div class="col-lg-8 col-sm-12">
+                <div class="title">
+                    <h1>{{ (topic$ | async)?.titulo }}</h1> 
+                </div>
+                <code>{{ (topic$ | async)?.cuerpo }}</code>
+                <figcaption class="blockquote-footer mt-1 font-italic">
+                    {{ (topic$ | async)?.fecha | date:'fullDate' }}
+                </figcaption>
+
+                <mat-form-field class="example-chip-list" appearance="fill">
+                    <mat-label>Reacciones :D</mat-label>
+                    <mat-chip-list #chipList aria-label="Borrar Reacciones">
+                      <mat-chip
+                        *ngFor="let fruit of reacciones"
+                        (removed)="remove(fruit)" matChipRemove>
+                        {{fruit}}
+                      </mat-chip>
+                      <input
+                        placeholder="Nueva reacción..."
+                        #fruitInput
+                        [formControl]="fruitCtrl"
+                        [matChipInputFor]="chipList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                </mat-form-field>
+                  
+            </div>
         </div>
-        
-        
     </div>
 </div>
-<div class="botones">
-    <ng-template ngIf="usuario.id == (topic$ | async)?.id_usuario_fk"><button class="btn bg-animated">Borrar tema</button></ng-template>
-</div>
+<br>
+<ng-container *ngIf="usuario.id == (topic$ | async)?.id_usuario_fk; then mostrar;"></ng-container>
+<ng-template #mostrar>
+    <div class="botones">
+        <ng-container *ngIf="(topic$ | async)?.borrado == 0; then hide; else show;"></ng-container>
+        <ng-template #hide>
+            <button class="btn bg-animated" (click)="borrar()">Borrar tema</button>
+        </ng-template>
+        <ng-template #show>
+            <button class="btn bg-animated" (click)="mostraruwu()">Mostrar tema</button>
+        </ng-template>
+    </div>
+</ng-template>
+
 
 <br><br>
 <div *ngIf="usuario.id != 0">
@@ -54,21 +87,28 @@
 </div>
 
 <div *ngFor="let hilo of (threads$ | async)" class="resp">
-        <div class="container">
-            <div class="row">
-                <div class="col col-lg-12 col-sm-12 mb-4 mb-lg-0">
+    <div class="container">
+        <div class="row">
+            <div class="col col-lg-11 col-sm-11 mb-4 mb-lg-0">
                     <figure class="bg-white p-3 rounded shadow" style="border-left: .25rem solid #CC0000;">
-                      <blockquote class="blockquote pb-2">
-                        <p>
-                            {{ hilo.cuerpo }}
-                        </p>
-                      </blockquote>
-                      <figcaption class="blockquote-footer mb-0 font-italic">
-                            {{ hilo.usuario }} - {{ hilo.fecha | date:'medium' }}
-                      </figcaption>
-                    </figure>
-                </div>
+                        <div class="row">
+                        <div class="col-2 d-none d-lg-block d-print-block">
+                                <img class="img-fluid perfil" [src]="hilo.foto" alt="foto de perfil">
+                        </div>
+                        <div class="col-10">                
+                            <blockquote class="blockquote pb-2">
+                                <p>
+                                    {{ hilo.cuerpo }}
+                                </p>
+                            </blockquote>
+                            <figcaption class="blockquote-footer mb-0 font-italic">
+                                {{ hilo.usuario }} - {{ hilo.fecha | date:'medium' }}
+                            </figcaption>
+                        </div>
+                    </div>
+                </figure>
             </div>
+        </div>
     </div>
 </div>
 

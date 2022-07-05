@@ -1,7 +1,9 @@
 /* css generales v1 */
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 @import '~animate.css/animate.min';
+
 
 body.dark-theme {
     /* background-color: #333; */
@@ -18,7 +20,6 @@ p, h5 {
     color: black;
 }
 
-
 .card-header h5, .card-header p {
     color: white;
 }
@@ -31,6 +32,7 @@ body {
     background-size: 600% 600%;
     /* color: white; */
     color: black;
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
     /* -webkit-animation: gradient 7s ease infinite;
     -moz-animation: gradient 7s ease infinite;
     -o-animation: gradient 7s ease infinite;
@@ -135,4 +137,14 @@ h1, h2, h3, h4, h5, h6, label {
 .shadow {
     -webkit-box-shadow: 5px 5px 10px 3px rgba(0,0,0,0.2); 
     box-shadow: 5px 5px 10px 3px rgba(0,0,0,0.2);
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-chip-list-wrapper {
+    flex-wrap: nowrap !important;
+}
+
+.mat-form-field {
+    display: block !important;
+    margin: 0 20px 0 0;
 }

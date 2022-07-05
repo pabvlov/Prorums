@@ -1,7 +1,7 @@
 const db = require('./db');
 
 async function getMultiple(){
-  const category = await db.query(`SELECT * FROM tema ORDER BY fecha DESC`);
+  const category = await db.query(`SELECT * FROM tema WHERE borrado = 0 ORDER BY fecha DESC`);
   return category;
 }
 
@@ -17,12 +17,12 @@ async function getByForum(id){
                                       FROM tema t 
                                       INNER JOIN usuario u on t.id_usuario_fk = u.id 
                                       INNER JOIN foro f on t.id_foro_fk = f.id
-                                      WHERE id_foro_fk = ${id} ORDER BY fecha DESC`);
+                                      WHERE id_foro_fk = ${id} AND borrado = 0 ORDER BY fecha DESC`);
     return category;
 }
 
 async function getById(id){
-  const category = await db.query(`SELECT t.id, t.titulo, t.cuerpo, t.fecha, t.tipo, t.id_foro_fk, t.id_usuario_fk, 
+  const category = await db.query(`SELECT t.id, t.titulo, t.cuerpo, t.fecha, t.tipo, t.id_foro_fk, t.id_usuario_fk, t.borrado,
                                     u.foto, u.nombre as escritor, u.apodo as apodo_escritor, u.ultima_visita,
                                     f.nombre as foro, f.foto as foto_foro, 
                                     c.nombre as categoria,
