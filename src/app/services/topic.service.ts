@@ -60,6 +60,12 @@ export class TopicService {
     return this.httpClient.post<ProrumsResponse>(url, body) // respuesta ok y msg que devuelve el post al ejecutarse
   }
 
+  editTopic(id:number, titulo: string, categoria: string, cuerpo: string) {
+    const url = 'http://localhost:3000/post/edit/';
+    const body = { id, titulo, categoria, cuerpo } // objeto body conformado por los entry paramenters
+    return this.httpClient.post<ProrumsResponse>(url, body) // respuesta ok y msg que devuelve el post al ejecutarse
+  }
+
   borrar(id: number) {
     return this.httpClient.post<ProrumsResponse>(`http://localhost:3000/post/hide`, { id });
   }

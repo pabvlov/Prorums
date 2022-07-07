@@ -1,21 +1,21 @@
-<form class="mt-10" [formGroup]="topicForm" (submit)="post()">
+<form class="mt-10" [formGroup]="topicForm" (submit)="(tipo == 0) ? edit() : post()">
             
     <div class="group">      
-      <input type="text" formControlName="titulo" required>
+      <input type="text" formControlName="titulo" [value]="(tipo == 0) ?(topic$ | async)?.titulo : ''" required>
       <span class="highlight"></span>
       <span class="bar"></span>
       <label>Titulo</label>
     </div>
 
     <div class="group">      
-        <input type="text" formControlName="categoria" required>
+        <input type="text" formControlName="categoria" [value]="(tipo == 0) ?(topic$ | async)?.tipo : ''" required>
         <span class="highlight"></span>
         <span class="bar"></span>
         <label>Categoria</label>
       </div>
       
     <div class="group">      
-        <textarea formControlName="cuerpo" required></textarea>
+        <textarea formControlName="cuerpo" [value]="(tipo == 0) ?(topic$ | async)?.cuerpo : ''" required></textarea>
         <span class="highlight"></span>
         <span class="bar"></span>
         <label>Cuerpo</label>
@@ -29,86 +29,104 @@
     </ng-template>
     
     <div class="right">
-        <button type="submit" class="btn bg-animated">Publicar</button>
+        <button type="submit" class="btn bg-animated">{{ (tipo == 0) ? 'Editar': 'Publicar' }}</button>
     </div>
 </form>
 
 
 <h3>Vista previa:</h3>
-
-<!-- <br>
-
-<div class="content animate__animated animate__fadeIn animate__faster">
-    <h1>{{ this.topicForm.controls['titulo'].value }}</h1>
-    <div class="info">
-        <h5>Por: {{ (user$ | async)?.nombre }}<br>[ {{ (user$ | async)?.apodo}} ]</h5>
-        <ng-container *ngIf="this.topicForm.controls['categoria'].value != ''; then categoria;else notCategoria"></ng-container>
-        <ng-template #categoria>
-            <h5>Tipo: <button class="btn bg-animated btn-sm">{{ this.topicForm.controls['categoria'].value }}</button></h5>
-        </ng-template>
-        <ng-template #notCategoria>
-            <h5>Tipo: <button class="btn bg-animated btn-sm">Categoria</button></h5>
-        </ng-template>
-        <h5>Fecha: <button class="btn bg-animated btn-sm">{{ fecha_actual | date:'medium' }}</button></h5>
-    </div>
-    <div class="body">
-        <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-12">
-                <code>{{ this.topicForm.controls['cuerpo'].value }}</code>
-            </div>
-            <div class="col-lg-4 col-md-8 col-sm-12">
-                <div class="card border-gradient">
-                    <div class="card-body text-center">
-                      <h5 class="card-title text-center"><a [href]="'/user/' + (user$ | async)?.id" class="btn bg-animated btn-sm">{{ (user$ | async)?.apodo }}</a></h5>
-                      <div class="foto">
-                        <img [src]="(user$ | async)?.foto" class="img-fluid">
-                      </div>
-                      <br>
-                      Última Conexión: 
-                      <p class="text-center">{{ (user$ | async)?.ultima_visita | date:'medium' }}</p>
-                      <p class="text-center">{{ (user$ | async)?.pais }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div> -->
-
-
 <br>
-<div class="content animate__animated animate__fadeIn animate__faster">
-    <div class="body">
-        <div class="float">
-            <h5>{{ this.topicForm.controls['categoria'].value }}</h5>
+<ng-container *ngIf="tipo == 0; then editar; else postear;"></ng-container>
+<ng-template #editar>
+    <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="content animate__animated animate__fadeIn animate__faster">
+                <div class="body">
+                    <div class="float">
+                        <h5>
+                            {{ (topic$ | async)?.tipo }}
+                        </h5>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="title">
+                                <h1>{{ (topic$ | async)?.titulo }}</h1>
+                            </div>
+                            <code>{{ (topic$ | async)?.cuerpo }}</code>
+                            <figcaption class="blockquote-footer mt-1 font-italic">
+                                {{ fecha_actual | date:'fullDate' }}
+                            </figcaption>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+            </div>
         </div>
-        <div class="row">
-            <div class="col-lg-4 col-sm-12">
-                <div class="card border-gradient">
-                    <div class="card-body text-center">
-                      <h5 class="card-title text-center"><a [href]="'/user/' + (user$ | async)?.id" class="btn bg-animated btn-sm">{{ (user$ | async)?.apodo }}</a></h5>
-                      <div class="foto">
-                        <img [src]="(user$ | async)?.foto" class="img-fluid">
-                      </div>
-                      <br>
-                      <h6>{{ (user$ | async)?.nombre }}</h6>
-                      <br>
-                      Última Conexión: 
-                      <p class="text-center">{{ (user$ | async)?.ultima_visita | date:'medium' }}</p>
-                      <p class="text-center">{{ (user$ | async)?.pais }}</p>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="content animate__animated animate__fadeIn animate__faster">
+                <div class="body">
+                    <div class="float">
+                        <h5>
+                            {{ this.topicForm.controls['categoria'].value }}
+                        </h5>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="title">
+                                <h1>{{ this.topicForm.controls['titulo'].value }}</h1>
+                            </div>
+                            <code>{{ this.topicForm.controls['cuerpo'].value }}</code>
+                            <figcaption class="blockquote-footer mt-1 font-italic">
+                                {{ fecha_actual | date:'fullDate' }}
+                            </figcaption>
+                        </div>
+                        <mat-card-footer>
+                            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                        </mat-card-footer>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8 col-sm-12">
-                <div class="title">
-                    <h1>{{ this.topicForm.controls['titulo'].value }}</h1>
+        </div>
+    </div>
+</ng-template>
+<ng-template #postear>
+    <div class="content animate__animated animate__fadeIn animate__faster">
+        <div class="body">
+            <div class="float">
+                <h5>
+                    {{ this.topicForm.controls['categoria'].value }}
+                </h5>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-12">
+                    <div class="card border-gradient">
+                        <div class="card-body text-center">
+                          <h5 class="card-title text-center"><a [href]="'/user/' + (user$ | async)?.id" class="btn bg-animated btn-sm">{{ (user$ | async)?.apodo }}</a></h5>
+                          <div class="foto">
+                            <img [src]="(user$ | async)?.foto" class="img-fluid">
+                          </div>
+                          <br>
+                          <h6>{{ (user$ | async)?.nombre }}</h6>
+                          <br>
+                          Última Conexión: 
+                          <p class="text-center">{{ (topic$ | async)?.ultima_visita | date:'medium' }}</p>
+                          <p class="text-center">{{ (topic$ | async)?.pais }}</p>
+                        </div>
+                    </div>
                 </div>
-                <code>{{ this.topicForm.controls['cuerpo'].value }}</code>
-                <figcaption class="blockquote-footer mt-1 font-italic">
-                    {{ fecha_actual | date:'fullDate' }}
-                </figcaption>
+                <div class="col-lg-8 col-sm-12">
+                    <div class="title">
+                        <h1>{{ this.topicForm.controls['titulo'].value }}</h1>
+                    </div>
+                    <code>{{ this.topicForm.controls['cuerpo'].value }}</code>
+                    <figcaption class="blockquote-footer mt-1 font-italic">
+                        {{ fecha_actual | date:'fullDate' }}
+                    </figcaption>
+                </div>
+                <mat-card-footer>
+                    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                </mat-card-footer>
             </div>
         </div>
     </div>
-</div>
+</ng-template>

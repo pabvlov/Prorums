@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map, Observable, startWith } from 'rxjs';
 import { Thread } from '../interfaces/thread.interface';
 import { Topic, Topics } from '../interfaces/topic.interface';
@@ -22,7 +22,8 @@ export class FulltopicComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private threadService: ThreadService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private router: Router) {
       this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
         startWith(null),
         map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice())),
@@ -55,6 +56,10 @@ export class FulltopicComponent implements OnInit {
 
   mostraruwu() {
     this.topicService.mostrar(this.id_tema).subscribe( resp => { if(resp.ok) window.location.reload(); });
+  }
+
+  editar() {
+    this.router.navigateByUrl('/edit/' + this.id_tema, {skipLocationChange: true});
   }
 
   ngOnInit(): void {

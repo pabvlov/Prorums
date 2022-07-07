@@ -30,6 +30,10 @@ const routes: Routes = [ // redirecciones / rutas url
     component: PostComponent
   },
   {
+    path: 'edit/:id',
+    component: PostComponent
+  },
+  {
     path: 'topics/:id',
     component: TopicsComponent
   },

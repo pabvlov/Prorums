@@ -69,17 +69,12 @@ code {
 .float {
     position: absolute;
     z-index: 100;
-    transform: rotateZ(-35deg);
-    background-color: #cc0000;
     padding: 10px 10px;
     border-radius: 10px;
-}
+    transform: translateY(-45px);
+  }
 
 .float h5 {
     margin: 0;
     padding: 0;
-}
-
-mat-form-field {
-    flex-wrap: nowrap !important;
 }
