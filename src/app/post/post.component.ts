@@ -20,6 +20,8 @@ export class PostComponent implements OnInit {
   tipo = 0;
   ok = ''
   id_tema = this.route.snapshot.params["id"]; // saco el id del url
+  id_foro = this.route.snapshot.params["id"]; // obtengo el id desde la url
+  fecha_actual = new Date()
 
   constructor(private userService: UserService, 
               private fb: FormBuilder, 
@@ -27,15 +29,14 @@ export class PostComponent implements OnInit {
               private topicService: TopicService,
               private threadService: ThreadService,
               private router: Router) {} // importo servicios y routeservice
-              fecha_actual = new Date()
-              id_foro = this.route.snapshot.params["id"]; // obtengo el id desde la url
+              
   get usuario(){
     return this.userService.usuario; // getter de usuario de userService
   }
               
   topicForm: FormGroup = this.fb.group({
     titulo:  [ '', [ Validators.required] ],
-    categoria:  [ '', [ Validators.required, Validators.maxLength(20)] ],
+    categoria:  [ '', [ Validators.required ] ],
     cuerpo: [ '', [ Validators.required] ]
   }) // form controller
   user$!: Observable<User>;
@@ -50,7 +51,7 @@ export class PostComponent implements OnInit {
         if(resp.ok) {
           this.router.navigateByUrl('/topics/' + this.id_foro, {skipLocationChange: true})
         } else {
-          console.log(resp.resp!)
+          console.log(resp.ok!)
           this.ok = resp.resp!
         }
       })
